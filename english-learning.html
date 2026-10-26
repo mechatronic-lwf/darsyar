@@ -103,12 +103,6 @@
   .chip[aria-pressed="true"]{background:var(--primary-soft);border-color:var(--primary);color:var(--primary);font-weight:700}
   .result-count{font-size:.82rem;color:var(--muted);margin-bottom:12px}
 
-  /* ---------- Notice ---------- */
-  .notice{
-    background:#fffbea;border:1px solid #f5e6a8;color:#8a6d1a;border-radius:10px;
-    padding:10px 14px;font-size:.85rem;margin-bottom:16px;
-  }
-
   /* ---------- Cards ---------- */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
   .card{
@@ -261,7 +255,6 @@
       </select>
     </div>
     <div class="chips" id="chips" role="group" aria-label="فیلتر دسته‌بندی"></div>
-    <div class="notice">شمارهٔ ۱۳ در منبع اصلی وجود ندارد و شماره‌گذاری از ۱۲ به ۱۴ می‌رسد؛ هیچ موردی حذف یا ادغام نشده است.</div>
     <div class="result-count" id="result-count" aria-live="polite"></div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="cards-empty" hidden>موردی مطابق جست‌وجو و فیلترهای انتخابی پیدا نشد.</div>
@@ -335,6 +328,7 @@ const DATA = [
   {n:10, cat:"c1", en:"At rated voltage and frequency", fa:"در ولتاژ و فرکانس نامی", note:"Rated: نامی؛ مقداری که دستگاه برای کار در آن طراحی شده است."},
   {n:11, cat:"c1", en:"Performance will be affected", fa:"عملکرد تحت تأثیر قرار خواهد گرفت"},
   {n:12, cat:"c1", en:"Represents the number of AC power lines", fa:"نشان‌دهندهٔ تعداد فازهای برق متناوب (AC) است"},
+  {n:13, cat:"c1", en:"Supply the motor", fa:"تغذیه کردن موتور؛ برق‌رسانی به موتور"},
   {n:14, cat:"c1", en:"Current indicated on the nameplate", fa:"جریان درج‌شده روی پلاک مشخصات"},
   {n:15, cat:"c1", en:"If the phases are unbalanced", fa:"اگر فازها نامتعادل باشند"},
   {n:16, cat:"c1", en:"If the voltage turns out to be lower than indicated", fa:"اگر ولتاژ کمتر از مقدار درج‌شده باشد"},
