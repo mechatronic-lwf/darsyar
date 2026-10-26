@@ -2,7 +2,7 @@
 
 وب‌اپ آموزشی مستقل (HTML/CSS/JS بدون هیچ وابستگی) برای یادگیری واژگان و جملات تخصصی مهندسی برق و مکاترونیک.
 
-- فایل اصلی: [english-learning.html](english-learning.html)
+- فایل اصلی: [index.html](index.html)
 - اجرا: کافی است فایل را در مرورگر باز کنید؛ بدون نیاز به سرور یا اینترنت.
 - نسخه آنلاین: https://mechatronic-lwf.github.io/english-learning/
 
