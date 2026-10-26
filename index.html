@@ -879,16 +879,22 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 
 /* ================= رویدادهای عمومی ================= */
 /* هدر جمع‌شونده هنگام اسکرول برای دید بیشتر
-   بدون ترنزیشن layout (پرهزینه روی موبایل)؛ تعویض تک‌فریمی با rAF
-   و آستانه‌ی دوگانه (hysteresis) تا در مرز اسکرول فلیکر نکند */
+   - بدون ترنزیشن layout (پرهزینه روی موبایل)
+   - جبران فوری اسکرول به اندازه‌ی تغییر ارتفاع هدر تا محتوا نپرد
+   - آستانه‌ی دوگانه (44/12) با اختلاف ارتفاع ~28px تا پس از جبران
+     در ناحیه‌ی امن بمانیم و پد‌پد (فیدبک‌لوپ) رخ ندهد */
 const headerEl = document.querySelector("header");
 let headerCompact = false, headerTick = false;
+function setHeaderCompact(should){
+  const heightBefore = headerEl.offsetHeight;
+  headerCompact = should;
+  headerEl.classList.toggle("compact", should);
+  const delta = headerEl.offsetHeight - heightBefore;
+  if (delta) window.scrollBy(0, delta);
+}
 function updateHeaderCompact(y){
   const should = y > 44 ? true : (y < 12 ? false : headerCompact);
-  if (should !== headerCompact){
-    headerCompact = should;
-    headerEl.classList.toggle("compact", should);
-  }
+  if (should !== headerCompact) setHeaderCompact(should);
 }
 window.addEventListener("scroll", () => {
   if (!headerTick){
