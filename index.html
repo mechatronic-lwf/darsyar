@@ -58,12 +58,15 @@
   :focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:6px}
 
   /* ---------- Header ---------- */
+  /* هدر fixed است (نه sticky): جمع‌شدنش هیچ تغییری در چیدمان سند و اسکرول نمی‌دهد
+     و دیگر نیازی به جبران اسکرول نیست — بدون پرش و بدون فیدبک‌لوپ در موبایل */
   header{
     background:var(--card);
     border-bottom:1px solid var(--border);
     padding:12px 16px 12px;
-    position:sticky;top:0;z-index:50;
+    position:fixed;top:0;right:0;left:0;z-index:50;
   }
+  body{padding-top:95px}
   .head-inner{max-width:780px;margin:0 auto}
   .head-row{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
   h1{font-size:1.55rem;font-weight:900;display:inline-flex;align-items:center;gap:10px;line-height:1.5}
@@ -879,22 +882,13 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 
 /* ================= رویدادهای عمومی ================= */
 /* هدر جمع‌شونده هنگام اسکرول برای دید بیشتر
-   - بدون ترنزیشن layout (پرهزینه روی موبایل)
-   - جبران فوری اسکرول به اندازه‌ی تغییر ارتفاع هدر تا محتوا نپرد
-   - آستانه‌ی دوگانه (44/12) با اختلاف ارتفاع ~28px تا پس از جبران
-     در ناحیه‌ی امن بمانیم و پد‌پد (فیدبک‌لوپ) رخ ندهد */
+   هدر fixed است، پس تغییر حالتش چیدمان و اسکرول را دستکاری نمی‌کند؛
+   فقط کلاس عوض می‌شود — بدون جبران اسکرول، بدون پرش، بدون حلقه */
 const headerEl = document.querySelector("header");
 let headerCompact = false, headerTick = false;
 function setHeaderCompact(should){
-  const heightBefore = headerEl.offsetHeight;
   headerCompact = should;
   headerEl.classList.toggle("compact", should);
-  const delta = headerEl.offsetHeight - heightBefore;
-  if (delta){
-    // جبران لحظه‌ای (بدون انیمیشن) — scrollTop تحت تأثیر scroll-behavior:smooth نیست
-    const doc = document.scrollingElement || document.documentElement;
-    doc.scrollTop = doc.scrollTop + delta;
-  }
 }
 function updateHeaderCompact(y){
   const should = y > 44 ? true : (y < 12 ? false : headerCompact);
@@ -909,6 +903,17 @@ window.addEventListener("scroll", () => {
     });
   }
 }, { passive: true });
+
+/* فضا رزرو شده برای هدر fixed: همیشه برابر ارتفاع هدر در حالت کامل */
+function syncHeaderSpace(){
+  const was = headerCompact;
+  headerEl.classList.remove("compact");
+  headerCompact = false;
+  document.body.style.paddingTop = headerEl.offsetHeight + "px";
+  updateHeaderCompact(window.scrollY);
+}
+window.addEventListener("resize", syncHeaderSpace);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncHeaderSpace);
 
 $("search").addEventListener("input", (e) => {
   state.search = e.target.value;
