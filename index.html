@@ -890,7 +890,11 @@ function setHeaderCompact(should){
   headerCompact = should;
   headerEl.classList.toggle("compact", should);
   const delta = headerEl.offsetHeight - heightBefore;
-  if (delta) window.scrollBy(0, delta);
+  if (delta){
+    // جبران لحظه‌ای (بدون انیمیشن) — scrollTop تحت تأثیر scroll-behavior:smooth نیست
+    const doc = document.scrollingElement || document.documentElement;
+    doc.scrollTop = doc.scrollTop + delta;
+  }
 }
 function updateHeaderCompact(y){
   const should = y > 44 ? true : (y < 12 ? false : headerCompact);
