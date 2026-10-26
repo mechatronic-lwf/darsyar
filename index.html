@@ -78,6 +78,14 @@
   .head-stats{margin-inline-start:auto;display:flex;gap:12px;font-size:.8rem;color:var(--muted)}
   .head-stats b{color:var(--primary);font-weight:800}
   .progress-wrap{margin-top:6px;display:flex;align-items:center;gap:10px}
+  header{transition:padding .2s ease}
+  h1{transition:font-size .2s ease}
+  header.compact{padding:6px 16px 7px}
+  header.compact h1{font-size:1.08rem;gap:8px}
+  header.compact .title-badge{font-size:.8rem}
+  header.compact .title-side{display:none}
+  header.compact .head-stats{font-size:.72rem}
+  header.compact .progress-wrap{margin-top:3px}
   progress{flex:1;appearance:none;height:6px;border-radius:99px;overflow:hidden;background:var(--border)}
   progress::-webkit-progress-bar{background:var(--border);border-radius:99px}
   progress::-webkit-progress-value{background:var(--primary);border-radius:99px;transition:width .3s}
@@ -872,6 +880,17 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 });
 
 /* ================= رویدادهای عمومی ================= */
+/* هدر جمع‌شونده هنگام اسکرول برای دید بیشتر */
+const headerEl = document.querySelector("header");
+let headerCompact = false;
+window.addEventListener("scroll", () => {
+  const shouldCompact = window.scrollY > 40;
+  if (shouldCompact !== headerCompact){
+    headerCompact = shouldCompact;
+    headerEl.classList.toggle("compact", shouldCompact);
+  }
+}, { passive: true });
+
 $("search").addEventListener("input", (e) => {
   state.search = e.target.value;
   state.reviewIdx = 0; state.quizIdx = 0;
