@@ -78,8 +78,6 @@
   .head-stats{margin-inline-start:auto;display:flex;gap:12px;font-size:.8rem;color:var(--muted)}
   .head-stats b{color:var(--primary);font-weight:800}
   .progress-wrap{margin-top:6px;display:flex;align-items:center;gap:10px}
-  header{transition:padding .2s ease}
-  h1{transition:font-size .2s ease}
   header.compact{padding:6px 16px 7px}
   header.compact h1{font-size:1.08rem;gap:8px}
   header.compact .title-badge{font-size:.8rem}
@@ -880,14 +878,25 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 });
 
 /* ================= رویدادهای عمومی ================= */
-/* هدر جمع‌شونده هنگام اسکرول برای دید بیشتر */
+/* هدر جمع‌شونده هنگام اسکرول برای دید بیشتر
+   بدون ترنزیشن layout (پرهزینه روی موبایل)؛ تعویض تک‌فریمی با rAF
+   و آستانه‌ی دوگانه (hysteresis) تا در مرز اسکرول فلیکر نکند */
 const headerEl = document.querySelector("header");
-let headerCompact = false;
+let headerCompact = false, headerTick = false;
+function updateHeaderCompact(y){
+  const should = y > 44 ? true : (y < 12 ? false : headerCompact);
+  if (should !== headerCompact){
+    headerCompact = should;
+    headerEl.classList.toggle("compact", should);
+  }
+}
 window.addEventListener("scroll", () => {
-  const shouldCompact = window.scrollY > 40;
-  if (shouldCompact !== headerCompact){
-    headerCompact = shouldCompact;
-    headerEl.classList.toggle("compact", shouldCompact);
+  if (!headerTick){
+    headerTick = true;
+    requestAnimationFrame(() => {
+      updateHeaderCompact(window.scrollY);
+      headerTick = false;
+    });
   }
 }, { passive: true });
 
