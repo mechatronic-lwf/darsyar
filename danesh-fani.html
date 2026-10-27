@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="پودمان‌های درس دانش فنی در سامانه درس‌یار — یادگیری واژگان و جملات تخصصی انگلیسی.">
+<title>دانش فنی — پودمان‌ها | درس‌یار</title>
+<link rel="preload" href="fonts/Vazirmatn-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Vazirmatn-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="darsyar.css">
+<style>
+  @font-face{
+    font-family:"Vazirmatn";
+    src:url("fonts/Vazirmatn-Regular.woff2") format("woff2-variations");
+    font-weight:400;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:"Vazirmatn";
+    src:url("fonts/Vazirmatn-ExtraBold.woff2") format("woff2-variations");
+    font-weight:800;font-style:normal;font-display:swap;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap head-row">
+    <a class="btn-back" href="index.html" aria-label="بازگشت به صفحه اصلی">→</a>
+    <a class="brand" href="index.html">
+      <span class="logo" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </span>
+      درس‌یار
+    </a>
+    <div class="head-tools">
+      <span class="overall-chip" id="head-progress"></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="course-main">
+  <section class="hero">
+    <h1 id="course-title"></h1>
+    <p class="sub" id="course-desc"></p>
+    <div class="overall-wrap">
+      <progress id="course-progress" value="0" max="100" aria-label="پیشرفت کلی درس"></progress>
+      <span class="progress-label" id="course-progress-label">۰٪</span>
+    </div>
+    <p class="meta-line" id="course-meta"></p>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>پودمان‌ها</h2></div>
+    <div class="modules" id="modules"></div>
+  </section>
+</main>
+
+<dialog id="soon-dialog">
+  <h3>هنوز آماده نیست</h3>
+  <p>محتوای این پودمان هنوز اضافه نشده است. به‌زودی در دسترس قرار می‌گیرد.</p>
+  <div class="actions">
+    <button class="btn-primary" id="btn-close-soon">باشه</button>
+  </div>
+</dialog>
+
+<footer>
+  پیشرفت این درس به‌صورت محلی در مرورگر ذخیره می‌شود و با بازگشت به صفحه اصلی حفظ می‌ماند.
+</footer>
+
+<script src="darsyar-data.js"></script>
+<script>
+"use strict";
+const $id = (id) => document.getElementById(id);
+const FA_D = "۰۱۲۳۴۵۶۷۸۹";
+const faNum = (v) => String(v).replace(/\d/g, (d) => FA_D[+d]);
+
+const course = DARSYAR.courses.find(c => c.id === "danesh-fani");
+if (!course){
+  document.getElementById("course-main").textContent = "درس موردنظر پیدا نشد.";
+} else {
+  const p = darsyarOverallProgress(course);
+  document.title = course.title + " — پودمان‌ها | درس‌یار";
+  $id("course-title").textContent = course.title;
+  $id("course-desc").textContent = course.desc;
+  $id("course-progress").value = p.pct;
+  $id("course-progress-label").textContent = faNum(p.pct) + "٪";
+  $id("head-progress").innerHTML = "پیشرفت: <b>" + faNum(p.pct) + "٪</b>";
+  $id("course-meta").textContent = "تعداد کل پودمان‌ها: " + faNum(course.modules.length);
+
+  const wrap = $id("modules");
+  course.modules.forEach((mod, i) => {
+    const card = document.createElement("article");
+    card.className = "module-card" + (mod.status === "ready" ? "" : " locked");
+
+    const num = document.createElement("span");
+    num.className = "num";
+    num.textContent = faNum(i + 1);
+    card.append(num);
+
+    const info = document.createElement("div");
+    info.className = "info";
+    info.append(Object.assign(document.createElement("h3"), { textContent:mod.title }));
+    if (mod.desc) info.append(Object.assign(document.createElement("p"), { className:"desc", textContent:mod.desc }));
+    card.append(info);
+
+    const badge = document.createElement("span");
+    badge.className = "badge " + (mod.status === "ready" ? "ready" : "coming");
+    badge.textContent = mod.status === "ready" ? "قابل یادگیری" : "محتوا هنوز اضافه نشده";
+    card.append(badge);
+
+    if (mod.status === "ready"){
+      const pr = darsyarPodmanProgress(mod);
+      const pw = document.createElement("div");
+      pw.className = "progress-wrap";
+      const bar = document.createElement("progress");
+      bar.value = pr.pct; bar.max = 100;
+      bar.setAttribute("aria-label", "پیشرفت " + mod.title);
+      const lbl = document.createElement("span");
+      lbl.className = "progress-label";
+      lbl.textContent = faNum(pr.learned) + " از " + faNum(pr.total) + " · " + faNum(pr.pct) + "٪";
+      pw.append(bar, lbl);
+      card.append(pw);
+
+      const btn = document.createElement("a");
+      btn.className = "btn-primary";
+      btn.href = mod.page;
+      btn.textContent = "شروع یادگیری ←";
+      card.append(btn);
+    } else {
+      const btn = document.createElement("button");
+      btn.className = "btn-ghost";
+      btn.type = "button";
+      btn.textContent = "به‌زودی";
+      btn.addEventListener("click", () => $id("soon-dialog").showModal());
+      card.append(btn);
+    }
+    wrap.append(card);
+  });
+}
+
+$id("btn-close-soon").addEventListener("click", () => $id("soon-dialog").close());
+</script>
+</body>
+</html>

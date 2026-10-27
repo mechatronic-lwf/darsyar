@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="آموزش تعاملی واژگان و جملات تخصصی انگلیسی دانش فنی پایه دوازدهم مکاترونیک — پودمان ۱؛ با تلفظ صوتی، تمرین، مرور و آزمون.">
-<title>دانش فنی — پودمان ۱ | پایه دوازدهم مکاترونیک</title>
+<meta name="description" content="درس‌یار — سامانه آموزشی دانش‌آموزی: درس‌های خود را انتخاب کنید، وارد پودمان‌ها شوید و قدم‌به‌قدم پیشرفت کنید.">
+<title>درس‌یار — فضای یادگیری تو</title>
 <link rel="preload" href="fonts/Vazirmatn-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Vazirmatn-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="darsyar.css">
 <style>
   @font-face{
     font-family:"Vazirmatn";
@@ -15,984 +16,212 @@
   }
   @font-face{
     font-family:"Vazirmatn";
-    src:url("fonts/Vazirmatn-Bold.woff2") format("woff2-variations");
-    font-weight:700;font-style:normal;font-display:swap;
-  }
-  @font-face{
-    font-family:"Vazirmatn";
     src:url("fonts/Vazirmatn-ExtraBold.woff2") format("woff2-variations");
     font-weight:800;font-style:normal;font-display:swap;
-  }
-  @font-face{
-    font-family:"Vazirmatn";
-    src:url("fonts/Vazirmatn-Black.woff2") format("woff2-variations");
-    font-weight:900;font-style:normal;font-display:swap;
-  }
-  :root{
-    --bg:#f5f6f9;
-    --card:#ffffff;
-    --border:#e5e7ef;
-    --text:#1f2937;
-    --muted:#6b7280;
-    --primary:#4f46e5;
-    --primary-soft:#eef0fe;
-    --primary-dark:#3f38c9;
-    --success:#0e9f6e;
-    --success-soft:#e6f7f0;
-    --danger:#dc2626;
-    --radius:14px;
-    --shadow:0 1px 3px rgba(17,24,39,.06),0 4px 14px rgba(17,24,39,.05);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;overflow-anchor:none}
-  body{
-    font-family:"Vazirmatn","Noto Sans Arabic",Tahoma,"Segoe UI",sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.9;
-    font-size:16px;
-    min-height:100vh;
-  }
-  .en{direction:ltr;unicode-bidi:isolate;font-family:"Segoe UI","Vazirmatn",Tahoma,sans-serif;text-align:start}
-  button{font-family:inherit;cursor:pointer}
-  :focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:6px}
-
-  /* ---------- Header ---------- */
-  /* هدر fixed است (نه sticky): جمع‌شدنش هیچ تغییری در چیدمان سند و اسکرول نمی‌دهد
-     و دیگر نیازی به جبران اسکرول نیست — بدون پرش و بدون فیدبک‌لوپ در موبایل */
-  header{
-    background:var(--card);
-    border-bottom:1px solid var(--border);
-    padding:12px 16px 12px;
-    position:fixed;top:0;right:0;left:0;z-index:50;
-  }
-  body{padding-top:95px}
-  .head-inner{max-width:780px;margin:0 auto}
-  .head-row{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
-  h1{font-size:1.55rem;font-weight:900;display:inline-flex;align-items:center;gap:10px;line-height:1.5}
-  .title-main{color:var(--text)}
-  .title-badge{
-    background:var(--primary);color:#fff;border-radius:9px;
-    padding:1px 12px;font-size:.95rem;font-weight:800;letter-spacing:0;
-  }
-  .title-side{display:flex;flex-direction:column;line-height:1.5}
-  .title-sub{font-size:.88rem;font-weight:700;color:var(--text)}
-  .subtitle{color:var(--muted);font-size:.78rem}
-  .head-stats{margin-inline-start:auto;display:flex;gap:12px;font-size:.8rem;color:var(--muted)}
-  .head-stats b{color:var(--primary);font-weight:800}
-  .progress-wrap{margin-top:6px;display:flex;align-items:center;gap:10px}
-  header.compact{padding:6px 16px 7px}
-  header.compact h1{font-size:1.08rem;gap:8px}
-  header.compact .title-badge{font-size:.8rem}
-  header.compact .title-side{display:none}
-  header.compact .head-stats{font-size:.72rem}
-  header.compact .progress-wrap{margin-top:3px}
-  progress{flex:1;appearance:none;height:6px;border-radius:99px;overflow:hidden;background:var(--border)}
-  progress::-webkit-progress-bar{background:var(--border);border-radius:99px}
-  progress::-webkit-progress-value{background:var(--primary);border-radius:99px;transition:width .3s}
-  .progress-label{font-size:.8rem;color:var(--muted);min-width:74px;text-align:end}
-
-  main{max-width:1080px;margin:0 auto;padding:18px 16px 60px}
-
-  /* ---------- Settings ---------- */
-  .settings{
-    display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;
-    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-    padding:12px 16px;margin-bottom:16px;box-shadow:var(--shadow);
-  }
-  .settings label{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:8px}
-  select{
-    font-family:inherit;font-size:.85rem;padding:6px 10px;border:1px solid var(--border);
-    border-radius:8px;background:var(--card);color:var(--text);max-width:100%;
-  }
-  #voice{max-width:min(230px,58vw)}
-  .btn-reset{
-    margin-inline-start:auto;font-size:.82rem;color:var(--danger);background:none;
-    border:1px solid #f3caca;border-radius:8px;padding:6px 12px;transition:background .15s;
-  }
-  .btn-reset:hover{background:#fdf1f1}
-
-  /* ---------- Tabs ---------- */
-  .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-  .tab-btn{
-    border:1px solid var(--border);background:var(--card);border-radius:99px;
-    padding:8px 20px;font-size:.92rem;font-weight:500;color:var(--muted);transition:all .15s;
-  }
-  .tab-btn[aria-selected="true"]{background:var(--primary);border-color:var(--primary);color:#fff;font-weight:700}
-  .tab-panel{display:none}
-  .tab-panel.active{display:block}
-
-  /* ---------- Toolbar ---------- */
-  .toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;align-items:center}
-  .search-wrap{position:relative;flex:1;min-width:230px}
-  .search-wrap input{
-    width:100%;font-family:inherit;font-size:.92rem;padding:10px 40px 10px 14px;
-    border:1px solid var(--border);border-radius:10px;background:var(--card);
-  }
-  .search-wrap .icon{position:absolute;inset-inline-end:13px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
-  select.filter{padding:10px 14px;border-radius:10px;font-size:.88rem}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-  .chip{
-    border:1px solid var(--border);background:var(--card);border-radius:99px;
-    padding:6px 14px;font-size:.83rem;color:var(--muted);transition:all .15s;
-  }
-  .chip[aria-pressed="true"]{background:var(--primary-soft);border-color:var(--primary);color:var(--primary);font-weight:700}
-  .result-count{font-size:.82rem;color:var(--muted);margin-bottom:12px}
-
-  /* ---------- Cards ---------- */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
-  .card{
-    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-    padding:16px 16px 14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;
-    transition:box-shadow .15s;
-  }
-  .card:hover{box-shadow:0 2px 6px rgba(17,24,39,.08),0 8px 22px rgba(17,24,39,.07)}
-  .card.learned{border-color:#bfe8d6;background:linear-gradient(0deg,var(--success-soft),#fff 60%)}
-  .card-top{display:flex;align-items:center;gap:8px}
-  .num{
-    background:var(--primary-soft);color:var(--primary);font-weight:800;font-size:.78rem;
-    border-radius:8px;padding:2px 10px;min-width:34px;text-align:center;
-  }
-  .kind{font-size:.72rem;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:1px 8px}
-  .learned-badge{
-    margin-inline-start:auto;font-size:.75rem;color:var(--success);font-weight:700;display:none;align-items:center;gap:4px;
-  }
-  .card.learned .learned-badge{display:inline-flex}
-  .en-text{font-size:1.06rem;font-weight:600;line-height:1.6}
-  .fa-text{font-size:.94rem;color:var(--muted)}
-  .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
-  .btn{
-    border:1px solid var(--border);background:var(--card);border-radius:9px;
-    padding:7px 12px;font-size:.83rem;color:var(--text);display:inline-flex;align-items:center;gap:6px;
-    transition:all .15s;min-height:38px;
-  }
-  .btn:hover{border-color:var(--primary);color:var(--primary)}
-  .btn.playing{background:var(--primary);border-color:var(--primary);color:#fff}
-  .btn-learn.learned{background:var(--success);border-color:var(--success);color:#fff}
-  .btn-note{font-size:.8rem;color:var(--muted)}
-  .note{
-    display:none;background:#f8f9fc;border:1px dashed var(--border);border-radius:10px;
-    padding:10px 12px;font-size:.84rem;color:var(--muted);white-space:pre-line;
-  }
-  .note.open{display:block}
-
-  /* ---------- Practice panel ---------- */
-  .practice{display:none;border-top:1px solid var(--border);padding-top:12px;margin-top:2px}
-  .practice.open{display:block}
-  .practice .hint{font-size:.8rem;color:var(--muted);margin-bottom:8px}
-  .practice .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-  .mic-result{margin-top:8px;font-size:.86rem;display:none}
-  .mic-result.show{display:block}
-  .score-bar{height:6px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:6px}
-  .score-bar>span{display:block;height:100%;background:var(--primary);border-radius:99px;transition:width .4s}
-  .score-good{background:var(--success)!important}
-
-  /* ---------- Review / Quiz ---------- */
-  .stage{
-    max-width:640px;margin:0 auto;background:var(--card);border:1px solid var(--border);
-    border-radius:18px;box-shadow:var(--shadow);padding:30px 24px;text-align:center;
-  }
-  .stage .num{font-size:.85rem}
-  .stage .en-big{font-size:1.5rem;font-weight:700;line-height:1.7;margin:18px 0 6px}
-  .stage .fa-big{font-size:1.15rem;color:var(--text);min-height:56px;display:flex;align-items:center;justify-content:center}
-  .fa-big.hidden-fa .fa-value{visibility:hidden}
-  .counter{color:var(--muted);font-size:.85rem;margin-top:18px}
-  .stage-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:18px}
-  .btn-primary{
-    background:var(--primary);border-color:var(--primary);color:#fff;font-weight:700;
-  }
-  .btn-primary:hover{background:var(--primary-dark);color:#fff}
-  .empty{
-    text-align:center;color:var(--muted);padding:50px 10px;font-size:.95rem;
-  }
-  .toast{
-    position:fixed;bottom:20px;inset-inline:0;margin:0 auto;width:max-content;max-width:90vw;
-    background:#1f2937;color:#fff;border-radius:10px;padding:11px 20px;font-size:.88rem;
-    z-index:100;opacity:0;pointer-events:none;transition:opacity .25s;
-  }
-  .toast.show{opacity:1}
-
-  footer{
-    max-width:1080px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:.8rem;
-  }
-
-  @media (max-width:600px){
-    h1{font-size:1.3rem;gap:8px}
-    .title-badge{font-size:.85rem}
-    .head-stats{width:100%;margin-inline-start:0}
-    .stage{padding:22px 16px}
-    .stage .en-big{font-size:1.25rem}
-  }
-  @media (prefers-reduced-motion:reduce){
-    *{transition:none!important;animation:none!important;scroll-behavior:auto}
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="head-inner">
-    <div class="head-row">
-      <h1><span class="title-main">دانش فنی</span><span class="title-badge">پودمان ۱</span></h1>
-      <div class="title-side">
-        <span class="title-sub">تخصصی پایه دوازدهم مکاترونیک</span>
-        <span class="subtitle">یاد بگیر، گوش بده، تمرین کن</span>
-      </div>
-      <div class="head-stats">
-        <span>کل: <b id="stat-total">۹۴</b></span>
-        <span>یادگرفته‌شده: <b id="stat-learned">۰</b></span>
-      </div>
-    </div>
-    <div class="progress-wrap">
-      <progress id="progress" value="0" max="100" aria-label="پیشرفت کلی یادگیری"></progress>
-      <span class="progress-label" id="progress-label">۰٪</span>
+<header class="site-header">
+  <div class="wrap head-row">
+    <a class="brand" href="index.html">
+      <span class="logo" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </span>
+      درس‌یار
+    </a>
+    <div class="head-tools">
+      <span class="overall-chip" id="head-progress"></span>
+      <button class="icon-btn" id="btn-settings" aria-label="تنظیمات" title="تنظیمات">⚙️</button>
     </div>
   </div>
 </header>
 
-<main>
-  <section class="settings" aria-label="تنظیمات تلفظ">
-    <label>لهجه:
-      <select id="accent">
-        <option value="en-US">انگلیسی آمریکایی (en-US)</option>
-        <option value="en-GB">انگلیسی بریتیش (en-GB)</option>
-      </select>
-    </label>
-    <label>سرعت:
-      <select id="rate">
-        <option value="0.7">آهسته</option>
-        <option value="1" selected>معمولی</option>
-        <option value="1.25">کمی سریع‌تر</option>
-      </select>
-    </label>
-    <label>صدا:
-      <select id="voice">
-        <option value="auto">خودکار (شفاف‌ترین)</option>
-      </select>
-    </label>
-    <button class="btn-reset" id="btn-reset">پاک‌کردن پیشرفت</button>
-  </section>
-
-  <div class="tabs" role="tablist" aria-label="بخش‌های آموزش">
-    <button class="tab-btn" role="tab" aria-selected="true" data-tab="cards">📋 کارت‌ها</button>
-    <button class="tab-btn" role="tab" aria-selected="false" data-tab="review">🔁 مرور و تمرین</button>
-    <button class="tab-btn" role="tab" aria-selected="false" data-tab="quiz">📝 آزمون</button>
-  </div>
-
-  <!-- ================= کارت‌ها ================= -->
-  <section class="tab-panel active" id="panel-cards" role="tabpanel">
-    <div class="toolbar">
-      <div class="search-wrap">
-        <input type="search" id="search" placeholder="جست‌وجو در کلمات، معنی‌ها، شماره‌ها و یادداشت‌ها…" aria-label="جست‌وجو">
-        <span class="icon" aria-hidden="true">🔍</span>
-      </div>
-      <select class="filter" id="filter" aria-label="فیلتر وضعیت">
-        <option value="all">همه موارد</option>
-        <option value="learned">یادگرفته‌شده‌ها</option>
-        <option value="unlearned">یادنگرفته‌شده‌ها</option>
-        <option value="word">فقط کلمات</option>
-        <option value="sentence">فقط جمله‌ها</option>
-      </select>
+<main class="wrap">
+  <section class="hero">
+    <h1>به فضای یادگیری خودت خوش اومدی 👋</h1>
+    <p class="sub">درس‌هات رو انتخاب کن و قدم‌به‌قدم پیشرفت کن</p>
+    <div class="overall-wrap">
+      <progress id="overall-progress" value="0" max="100" aria-label="پیشرفت کلی"></progress>
+      <span class="progress-label" id="overall-label">۰٪</span>
     </div>
-    <div class="chips" id="chips" role="group" aria-label="فیلتر دسته‌بندی"></div>
-    <div class="result-count" id="result-count" aria-live="polite"></div>
-    <div class="grid" id="grid"></div>
-    <div class="empty" id="cards-empty" hidden>موردی مطابق جست‌وجو و فیلترهای انتخابی پیدا نشد.</div>
-  </section>
-
-  <!-- ================= مرور و تمرین ================= -->
-  <section class="tab-panel" id="panel-review" role="tabpanel">
-    <div class="stage">
-      <span class="num" id="rv-num"></span>
-      <div class="en-big en" id="rv-en" dir="ltr"></div>
-      <div class="fa-big" id="rv-fa-wrap"><span class="fa-value" id="rv-fa"></span></div>
-      <div class="stage-actions">
-        <button class="btn" id="rv-play">🔊 شنیدن تلفظ</button>
-        <button class="btn" id="rv-reveal">👁️ نمایش ترجمه</button>
-        <button class="btn btn-learn" id="rv-learn">✓ یاد گرفتم</button>
-      </div>
-      <div class="stage-actions">
-        <button class="btn" id="rv-prev">→ قبلی</button>
-        <button class="btn btn-primary" id="rv-next">بعدی ←</button>
-      </div>
-      <div class="counter" id="rv-counter"></div>
+    <div class="search-wrap">
+      <input type="search" id="course-search" placeholder="جست‌وجوی درس‌ها…" aria-label="جست‌وجوی درس‌ها">
+      <span class="icon" aria-hidden="true">🔍</span>
     </div>
   </section>
 
-  <!-- ================= آزمون ================= -->
-  <section class="tab-panel" id="panel-quiz" role="tabpanel">
-    <div class="stage">
-      <span class="num" id="qz-num"></span>
-      <div class="en-big en" id="qz-en" dir="ltr"></div>
-      <div class="fa-big" id="qz-fa-wrap"><span class="fa-value" id="qz-fa"></span></div>
-      <div class="stage-actions">
-        <button class="btn" id="qz-play">🔊 شنیدن تلفظ</button>
-        <button class="btn btn-primary" id="qz-reveal">نمایش پاسخ</button>
-        <button class="btn btn-primary" id="qz-next" hidden>سؤال بعدی ←</button>
-      </div>
-      <div class="counter" id="qz-counter"></div>
+  <section class="continue" id="continue-card" aria-live="polite"></section>
+
+  <section>
+    <div class="sec-head">
+      <h2>درس‌های من</h2>
     </div>
+    <div class="courses" id="courses"></div>
+    <div class="empty" id="courses-empty" hidden>درسی مطابق جست‌وجو پیدا نشد.</div>
   </section>
 </main>
 
+<dialog id="settings-dialog">
+  <h3>تنظیمات</h3>
+  <p id="settings-progress"></p>
+  <p>پیشرفت تو فقط در همین مرورگر (localStorage) ذخیره می‌شود؛ پاک‌کردن داده‌های مرورگر، پیشرفت را هم حذف می‌کند.</p>
+  <div class="actions">
+    <button class="btn-danger" id="btn-reset-all">پاک‌کردن کل پیشرفت</button>
+    <button class="btn-plain" id="btn-close-settings">بستن</button>
+  </div>
+</dialog>
+
 <footer>
-  تلفظ با موتور گفتار مرورگر (Web Speech API) پخش می‌شود و به صداهای نصب‌شده روی دستگاه بستگی دارد.
-  اگر صدایی پخش نشد، صدای انگلیسی را در تنظیمات سیستم‌عامل یا مرورگر خود فعال کنید.
+  درس‌یار — سامانه آموزشی دانش‌آموزی · پیشرفت شما به‌صورت محلی در مرورگر ذخیره می‌شود.
 </footer>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
+<script src="darsyar-data.js"></script>
 <script>
 "use strict";
+const $id = (id) => document.getElementById(id);
+const FA_D = "۰۱۲۳۴۵۶۷۸۹";
+const faNum = (v) => String(v).replace(/\d/g, (d) => FA_D[+d]);
 
-/* ================= داده‌های آموزشی (استخراج‌شده از منبع اصلی) ================= */
-const CATEGORIES = {
-  c1:"پلاک مشخصات و موتورهای الکتریکی",
-  c2:"مشخصات فنی موتور",
-  c3:"دیتاشیت قطعات الکترونیکی",
-  c4:"طراحی سیستم‌های کنترل",
-  c5:"کاربردهای صنعتی و پزشکی",
-  c6:"ایمنی الکتریکی و برق صنعتی"
-};
-
-const DATA = [
-  {n:1, cat:"c1", en:"Nameplate", fa:"پلاک مشخصات (Nameplate)", note:"Nameplate: پلاکی روی دستگاه که اطلاعات فنی آن — مانند ولتاژ، جریان و توان نامی — روی آن درج شده است."},
-  {n:2, cat:"c1", en:"Understanding nameplate information", fa:"درک اطلاعات روی پلاک مشخصات"},
-  {n:3, cat:"c1", en:"Requirement for manufacturers", fa:"الزامات برای تولیدکنندگان"},
-  {n:4, cat:"c1", en:"Display", fa:"نمایش (نحوه ارائه اطلاعات)"},
-  {n:5, cat:"c1", en:"In operation for a long time", fa:"کارکرد طولانی‌مدت"},
-  {n:6, cat:"c1", en:"Not possible to determine", fa:"غیرقابل تشخیص"},
-  {n:7, cat:"c1", en:"Are often lost or painted", fa:"اغلب گم می‌شوند یا روی آن‌ها رنگ پاشیده می‌شود"},
-  {n:8, cat:"c1", en:"At which voltage the motor is made to operate", fa:"ولتاژی که موتور برای کار با آن طراحی شده است"},
-  {n:9, cat:"c1", en:"Power factor, efficiency, torque and current", fa:"ضریب قدرت (ضریب توان)، بازده، گشتاور و جریان", note:"Torque: گشتاور؛ اثر چرخانندهٔ نیرو\nEfficiency: بازده؛ نسبت توان خروجی مفید به توان ورودی\nPower Factor: ضریب قدرت؛ ضریب توان — در حالت متداول سینوسی، نسبت توان اکتیو به توان ظاهری"},
-  {n:10, cat:"c1", en:"At rated voltage and frequency", fa:"در ولتاژ و فرکانس نامی", note:"Rated: نامی؛ مقداری که دستگاه برای کار در آن طراحی شده است."},
-  {n:11, cat:"c1", en:"Performance will be affected", fa:"عملکرد تحت تأثیر قرار خواهد گرفت"},
-  {n:12, cat:"c1", en:"Represents the number of AC power lines", fa:"نشان‌دهنده تعداد خطوط برق متناوب (AC)؛ تک‌فاز / سه‌فاز"},
-  {n:13, cat:"c1", en:"Supply the motor", fa:"تغذیه موتور"},
-  {n:14, cat:"c1", en:"Current indicated on the nameplate", fa:"جریان ذکر شده روی پلاک مشخصات"},
-  {n:15, cat:"c1", en:"If the phases are unbalanced", fa:"در صورت عدم تعادل فازها"},
-  {n:16, cat:"c1", en:"If the voltage turns out to be lower than indicated", fa:"اگر ولتاژ کمتر از مقدار ذکر شده باشد"},
-  {n:17, cat:"c1", en:"Current may deviate from the nameplate amperes", fa:"جریان ممکن است با مقدار آمپر درج‌شده روی پلاک متفاوت باشد"},
-  {n:18, cat:"c1", en:"Power factor is an expression of the ratio of active power (W) to apparent power (VA), expressed as a percentage", fa:"ضریب توان بیانگر نسبت توان اکتیو (وات) به توان ظاهری (ولت-آمپر) است که به صورت درصد بیان می‌شود"},
-  {n:19, cat:"c2", en:"Ability to deliver the torque needed for the load at rated speed", fa:"توانایی تأمین گشتاور مورد نیاز بار در سرعت نامی"},
-  {n:20, cat:"c2", en:"Normally, the full-load speed is given in RPM", fa:"معمولاً سرعت در بار کامل (Full-load speed) بر حسب دور در دقیقه (RPM) بیان می‌شود"},
-  {n:21, cat:"c2", en:"Slip — speed for actual rotor speed", fa:"لغزش (Slip) — تفاوت سرعت (نسبت به سرعت واقعی روتور)", note:"عبارت دست‌نویس و مبهم است (نیازمند بررسی). لغزش (Slip): اختلاف بین سرعت میدان مغناطیسی دوار و سرعت واقعی روتور."},
-  {n:22, cat:"c2", en:"Guaranteed minimum efficiencies", fa:"حداقل بازده‌های تضمین‌شده"},
-  {n:23, cat:"c2", en:"Foot hole mounting pattern", fa:"الگوی سوراخ‌های پایه برای نصب", note:"عبارت دست‌نویس است و احتمالاً به الگوی سوراخ‌های نصب پایهٔ موتور اشاره دارد."},
-  {n:24, cat:"c2", en:"Because special shaft or mounting configurations are used", fa:"به دلیل استفاده از شفت‌های خاص یا پیکربندی‌های نصب ویژه"},
-  {n:25, cat:"c2", en:"Inrush current per horsepower", fa:"جریان هجومی (Inrush current) به ازای هر اسب بخار", note:"از نظر فنی به جریان هجومی موتور هنگام راه‌اندازی اشاره دارد؛ واحد دقیق آن به متن اصلی و مشخصات فنی موردنظر بستگی دارد."},
-  {n:26, cat:"c2", en:"Characteristics", fa:"مشخصات (ویژگی‌ها)"},
-  {n:27, cat:"c3", en:"Datasheets are instruction manuals for electronic components", fa:"برگه‌های اطلاعات فنی (Datasheets) در واقع دفترچه‌های راهنما برای قطعات الکترونیکی هستند", note:"Datasheet: دیتاشیت یا برگهٔ اطلاعات فنی\nComponent: قطعه\nFunction: عملکرد\nFeature: ویژگی\nFunctionality: قابلیت‌ها و نحوهٔ عملکرد\nDepending on: بسته به"},
-  {n:28, cat:"c3", en:"They hopefully explain exactly what a component does", fa:"این اسناد دقیقاً توضیح می‌دهند که یک قطعه چه کاری انجام می‌دهد"},
-  {n:29, cat:"c3", en:"Unfortunately, these documents are usually written by engineers for other engineers", fa:"متأسفانه، این اسناد معمولاً توسط مهندسان و برای سایر مهندسان نوشته می‌شوند"},
-  {n:30, cat:"c3", en:"A datasheet's content will vary widely depending on the type of part", fa:"محتوای یک برگه اطلاعات فنی بسته به نوع قطعه، بسیار متفاوت خواهد بود"},
-  {n:31, cat:"c3", en:"The first page is usually a summary of the part's function and features", fa:"صفحه اول معمولاً خلاصه‌ای از عملکرد و ویژگی‌های قطعه است"},
-  {n:32, cat:"c3", en:"This is where you can quickly find a description of the part's functionality", fa:"در اینجا می‌توانید به‌سرعت توضیحی درباره نحوه عملکرد قطعه پیدا کنید"},
-  {n:33, cat:"c4", en:"Now we describe a general process for designing a control system", fa:"اکنون یک فرایند کلی برای طراحی سیستم کنترل را شرح می‌دهیم"},
-  {n:34, cat:"c4", en:"Is designed to achieve a desired purpose", fa:"برای دستیابی به هدفی مطلوب طراحی شده است"},
-  {n:35, cat:"c4", en:"Control design strategies", fa:"راهکارهای طراحی سیستم‌های کنترلی"},
-  {n:36, cat:"c4", en:"Improving manufacturing processes", fa:"بهبود فرآیندهای تولید"},
-  {n:37, cat:"c4", en:"Examine", fa:"بررسی کردن"},
-  {n:38, cat:"c4", en:"The input-output relationship", fa:"رابطه ورودی-خروجی"},
-  {n:39, cat:"c4", en:"Cause and effect relationship of the process", fa:"رابطه علت و معلولی در فرآیند"},
-  {n:40, cat:"c4", en:"Open-loop control system utilizes a controller or control actuator", fa:"سیستم کنترل حلقه باز (Open-loop) از یک کنترل‌کننده یا عملگر کنترلی استفاده می‌کند", note:"Open-loop control — کنترل حلقه‌باز: سیستم خروجی را برای اصلاح عملکرد به ورودی بازخورد نمی‌دهد.\nController — کنترل‌کننده: بخشی که فرمان کنترلی را تولید می‌کند.\nActuator — عملگر: وسیله‌ای که فرمان را به عمل فیزیکی تبدیل می‌کند."},
-  {n:41, cat:"c4", en:"Obtain the desired response", fa:"دستیابی به پاسخ مطلوب"},
-  {n:42, cat:"c4", en:"Control the process directly without using feedback", fa:"کنترل مستقیم فرآیند بدون استفاده از بازخورد (فیدبک)", note:"Feedback — بازخورد: اطلاعات برگشتی از خروجی سیستم."},
-  {n:43, cat:"c4", en:"Closed-loop control", fa:"کنترل حلقه بسته (Closed-loop)", note:"Closed-loop control — کنترل حلقه‌بسته: خروجی اندازه‌گیری می‌شود و از بازخورد برای اصلاح عملکرد سیستم استفاده می‌شود."},
-  {n:44, cat:"c4", en:"Control valve", fa:"شیر کنترلی (Control valve)"},
-  {n:45, cat:"c4", en:"Secondary air treatment", fa:"تصفیه هوای ثانویه"},
-  {n:46, cat:"c4", en:"Water tank", fa:"مخزن آب"},
-  {n:47, cat:"c4", en:"Foundation for control system analysis and design", fa:"مبنایی برای تحلیل و طراحی سیستم‌های کنترلی"},
-  {n:48, cat:"c4", en:"Modern engineering design", fa:"طراحی مهندسی مدرن"},
-  {n:49, cat:"c4", en:"Development of the computers", fa:"توسعه کامپیوترها"},
-  {n:50, cat:"c4", en:"Software advances", fa:"پیشرفت‌های نرم‌افزاری"},
-  {n:51, cat:"c4", en:"Manufacturing", fa:"تولید (ساخت)"},
-  {n:52, cat:"c4", en:"Synergistic integration", fa:"یکپارچه‌سازی هم‌افزا (Synergistic integration)"},
-  {n:53, cat:"c4", en:"Intelligent computer control", fa:"کنترل کامپیوتری هوشمند"},
-  {n:54, cat:"c4", en:"Industrial products", fa:"محصولات صنعتی"},
-  {n:55, cat:"c4", en:"CNC bending", fa:"خم‌کاری با دستگاه CNC"},
-  {n:56, cat:"c4", en:"Mechatronics applications", fa:"کاربردهای مکاترونیک"},
-  {n:57, cat:"c5", en:"Reduces space, energy and materials", fa:"کاهش فضا، انرژی و مواد"},
-  {n:58, cat:"c5", en:"Carry equipment", fa:"حمل تجهیزات", note:"عبارت دست‌نویس است. ترجمهٔ طبیعی با توجه به کاربرد «تجهیزات قابل‌حمل» است؛ اگر منظور جملهٔ امری باشد، معنی آن «تجهیزات را حمل کنید» خواهد بود."},
-  {n:59, cat:"c5", en:"Exploration", fa:"اکتشاف"},
-  {n:60, cat:"c5", en:"Remote location", fa:"مکان دورافتاده"},
-  {n:61, cat:"c5", en:"Automated onboard lab", fa:"آزمایشگاه خودکارِ مستقر در وسیله"},
-  {n:62, cat:"c5", en:"Testing specimens", fa:"آزمایش نمونه‌ها"},
-  {n:63, cat:"c5", en:"Advantage", fa:"مزیت"},
-  {n:64, cat:"c5", en:"Take measurements", fa:"انجام اندازه‌گیری‌ها"},
-  {n:65, cat:"c5", en:"Medical applications", fa:"کاربردهای پزشکی"},
-  {n:66, cat:"c5", en:"Irregular heart rhythm", fa:"ریتم نامنظم قلب"},
-  {n:67, cat:"c5", en:"High voltage", fa:"ولتاژ بالا"},
-  {n:68, cat:"c5", en:"Transportation device", fa:"وسیله حمل‌ونقل"},
-  {n:69, cat:"c5", en:"Independent power source", fa:"منبع تغذیه مستقل"},
-  {n:70, cat:"c5", en:"Proximity sensors", fa:"حسگرهای مجاورتی"},
-  {n:71, cat:"c5", en:"Tilt and pressure sensors", fa:"حسگرهای شیب و فشار"},
-  {n:72, cat:"c5", en:"Unmanned aerial vehicle", fa:"وسیله پروازی بدون سرنشین (پهپاد)"},
-  {n:73, cat:"c6", en:"Electric shock", fa:"شوک الکتریکی"},
-  {n:74, cat:"c6", en:"Protective conductor", fa:"هادی حفاظتی", note:"Protective conductor (PE): هادی حفاظتی که برای حفاظت در برابر برق‌گرفتگی به کار می‌رود."},
-  {n:75, cat:"c6", en:"Fault current", fa:"جریان خطا", note:"Fault current: جریانی که در اثر وقوع خطا — مانند اتصال کوتاه یا اتصال بدنه — برقرار می‌شود."},
-  {n:76, cat:"c6", en:"Protective device", fa:"وسیله حفاظتی"},
-  {n:77, cat:"c6", en:"Switch off the electric current", fa:"قطع جریان الکتریکی"},
-  {n:78, cat:"c6", en:"Metal casing", fa:"بدنه فلزی"},
-  {n:79, cat:"c6", en:"Safety factor", fa:"ضریب ایمنی"},
-  {n:80, cat:"c6", en:"Earthing is essential and mandatory", fa:"اتصال به زمین (ارتینگ) ضروری و الزامی است", note:"Earthing: اتصال الکتریکی مناسب به زمین برای اهداف حفاظتی یا عملکردی."},
-  {n:81, cat:"c6", en:"Exposed metallic parts", fa:"بخش‌های فلزی در دسترس"},
-  {n:82, cat:"c6", en:"Electrical appliance or installation", fa:"دستگاه یا تأسیسات الکتریکی"},
-  {n:83, cat:"c6", en:"Zero potential", fa:"پتانسیل صفر"},
-  {n:84, cat:"c6", en:"Dangerous level", fa:"سطح خطرناک"},
-  {n:85, cat:"c6", en:"Neutral point", fa:"نقطه خنثی (نول)", note:"Neutral point: نقطهٔ نول؛ با نقطهٔ ستاره همیشه مترادف نیست."},
-  {n:86, cat:"c6", en:"Great conductor of current", fa:"رسانای بسیار خوب جریان", note:"عبارت انگلیسی دست‌نویس و نامعمول است. ترجمهٔ لفظی «رسانای بسیار خوب جریان» است؛ اگر منظور ویژگی یک ماده باشد، معادل طبیعی‌تر «رسانای خوب جریان الکتریکی» است."},
-  {n:87, cat:"c6", en:"Live wire", fa:"سیم برق‌دار (فاز)", note:"Live wire: سیم برق‌دار؛ در شبکهٔ معمول تک‌فاز غالباً به سیم فاز گفته می‌شود."},
-  {n:88, cat:"c6", en:"Generator or transformer", fa:"ژنراتور یا ترانسفورماتور"},
-  {n:89, cat:"c6", en:"Star point", fa:"نقطه ستاره", note:"Star point: نقطهٔ مشترک اتصال ستاره‌ای سیم‌پیچ‌ها؛ بسته به مدار ممکن است با نقطهٔ نول مرتبط باشد اما همیشه مترادف نیست."},
-  {n:90, cat:"c6", en:"Three-phase system", fa:"سیستم سه‌فاز"},
-  {n:91, cat:"c6", en:"TN Network", fa:"شبکه TN", note:"TN Network: نوعی آرایش سیستم اتصال زمین در تأسیسات الکتریکی است."},
-  {n:92, cat:"c6", en:"Quantum computer", fa:"رایانه کوانتومی"},
-  {n:93, cat:"c4", en:"Control system", fa:"سیستم کنترل"},
-  {n:94, cat:"c4", en:"Mechatronics", fa:"مکاترونیک"},
-];
-
-/* ================= ابزارهای عمومی ================= */
-const $ = (id) => document.getElementById(id);
-const FA_DIGITS = "۰۱۲۳۴۵۶۷۸۹";
-const faNum = (v) => String(v).replace(/\d/g, (d) => FA_DIGITS[+d]);
-const isWord = (item) => item.en.trim().split(/\s+/).length <= 2;
-const itemId = (item) => "w" + item.n;
-
-function showToast(msg){
-  const t = $("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(showToast._tm);
-  showToast._tm = setTimeout(() => t.classList.remove("show"), 4000);
-}
-
-function el(tag, cls, text){
-  const e = document.createElement(tag);
-  if (cls) e.className = cls;
-  if (text !== undefined) e.textContent = text;
-  return e;
-}
-
-/* ================= وضعیت و ذخیره‌سازی ================= */
-const LS_LEARNED = "elq_learned", LS_RATE = "elq_rate", LS_ACCENT = "elq_accent", LS_VOICE = "elq_voice";
-let learned = {};
-try { learned = JSON.parse(localStorage.getItem(LS_LEARNED) || "{}") || {}; } catch (_) { learned = {}; }
-
-function saveLearned(){ localStorage.setItem(LS_LEARNED, JSON.stringify(learned)); }
-
-const state = {
-  search:"", filter:"all", cat:"all",
-  reviewIdx:0, reviewOrder:[], reviewRevealed:false,
-  quizIdx:0, quizOrder:[], quizRevealed:false
-};
-
-/* ================= تلفظ (Web Speech API) ================= */
-const synth = window.speechSynthesis;
-let voices = [], warnedNoVoice = false;
-
-function loadVoices(){
-  if (!synth) return;
-  voices = synth.getVoices();
-  populateVoices();
-}
-
-/* انتخاب صدا: در حالت خودکار، صداهای طبیعی و باکیفیت انگلیسی (به‌ویژه en-US) اولویت دارند */
-const PREFERRED_VOICE_PATTERNS = [
-  /natural|online|premium|enhanced/i,
-  /aria|zira|jenny|emma|ava|samantha|libby/i,
-  /david|guy|mark/i,
-  /google/i
-];
-function pickVoice(accent){
-  if (!voices.length) loadVoices();
-  const chosen = $("voice").value;
-  if (chosen && chosen !== "auto"){
-    const exact = voices.find(v => v.voiceURI === chosen);
-    if (exact) return exact;
-  }
-  const matchingAccent = voices.filter(v => v.lang && v.lang.replace("_", "-").toLowerCase().startsWith(accent.toLowerCase()));
-  const pool = matchingAccent.length ? matchingAccent : voices.filter(v => v.lang && v.lang.toLowerCase().startsWith("en"));
-  for (const re of PREFERRED_VOICE_PATTERNS){
-    const hit = pool.find(v => re.test(v.name));
-    if (hit) return hit;
-  }
-  return pool[0] || null;
-}
-
-function populateVoices(){
-  const sel = $("voice");
-  if (!sel) return;
-  const current = sel.value || localStorage.getItem(LS_VOICE) || "auto";
-  sel.textContent = "";
-  sel.append(new Option("خودکار (شفاف‌ترین)", "auto"));
-  voices.filter(v => v.lang && v.lang.toLowerCase().startsWith("en")).forEach(v => {
-    const shortName = v.name.replace(/\s*-\s*English.*$/i, "");
-    sel.append(new Option(shortName + " (" + v.lang + ")", v.voiceURI));
+function overall(){
+  let learned = 0, total = 0;
+  DARSYAR.courses.forEach(c => {
+    const p = darsyarOverallProgress(c);
+    learned += p.learned; total += p.total;
   });
-  if ([...sel.options].some(o => o.value === current)) sel.value = current;
-}
-if (synth){
-  loadVoices();
-  synth.addEventListener ? synth.addEventListener("voiceschanged", loadVoices) : (synth.onvoiceschanged = loadVoices);
+  return { learned, total, pct: total ? Math.round((learned / total) * 100) : 0 };
 }
 
-function stopSpeech(){
-  if (synth) synth.cancel();
-  document.querySelectorAll(".btn.playing").forEach(b => {
-    b.classList.remove("playing");
-    b.innerHTML = b.dataset.label || b.innerHTML;
-  });
+function renderOverall(){
+  const o = overall();
+  $id("overall-progress").value = o.pct;
+  $id("overall-label").textContent = faNum(o.pct) + "٪";
+  $id("head-progress").innerHTML = "پیشرفت کلی: <b>" + faNum(o.pct) + "٪</b>";
+  $id("settings-progress").textContent =
+    "تا این لحظه " + faNum(o.learned) + " مورد از " + faNum(o.total) + " مورد را یاد گرفته‌ای.";
 }
 
-function speak(text, btn){
-  if (!synth){
-    showToast("مرورگر شما از پخش تلفظ (Web Speech API) پشتیبانی نمی‌کند.");
-    return;
-  }
-  stopSpeech();
-  const accent = $("accent").value;
-  const rate = parseFloat($("rate").value) || 1;
-  const voice = pickVoice(accent);
-  if (!voice && !warnedNoVoice){
-    warnedNoVoice = true;
-    showToast("صدای انگلیسی در دستگاه شما پیدا نشد. لطفاً صدای انگلیسی را در تنظیمات سیستم‌عامل یا مرورگر نصب و فعال کنید.");
-  }
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = accent;
-  u.rate = rate;
-  if (voice) u.voice = voice;
-  if (btn){
-    btn.dataset.label = btn.innerHTML;
-    btn.classList.add("playing");
-    btn.textContent = "در حال پخش…";
-    u.onend = () => { btn.classList.remove("playing"); btn.innerHTML = btn.dataset.label; };
-    u.onerror = () => {
-      btn.classList.remove("playing");
-      btn.innerHTML = btn.dataset.label;
-      showToast("پخش تلفظ ممکن نشد. لطفاً صدای انگلیسی دستگاه خود را بررسی کنید.");
-    };
+/* ---------- ادامه یادگیری ---------- */
+function renderContinue(){
+  const box = $id("continue-card");
+  let last = null;
+  try { last = JSON.parse(localStorage.getItem("darsyar_last") || "null"); } catch(e){ last = null; }
+  box.textContent = "";
+  if (last && last.url){
+    const info = document.createElement("div");
+    info.className = "info";
+    info.append(Object.assign(document.createElement("div"), { className:"label", textContent:"ادامه یادگیری" }));
+    info.append(Object.assign(document.createElement("div"), { className:"title", textContent:last.title }));
+    const status = document.createElement("span");
+    status.className = "status";
+    status.textContent = "در حال یادگیری";
+    const btn = document.createElement("a");
+    btn.className = "btn-primary";
+    btn.href = last.url;
+    btn.textContent = "ادامه بده ←";
+    box.append(info, status, btn);
   } else {
-    u.onerror = () => showToast("پخش تلفظ ممکن نشد. لطفاً صدای انگلیسی دستگاه خود را بررسی کنید.");
+    const info = document.createElement("div");
+    info.className = "info";
+    info.append(Object.assign(document.createElement("div"), { className:"label", textContent:"ادامه یادگیری" }));
+    info.append(Object.assign(document.createElement("div"), { className:"hint", textContent:"هنوز یادگیری‌ای را شروع نکرده‌ای." }));
+    const btn = document.createElement("a");
+    btn.className = "btn-primary";
+    btn.href = "danesh-fani.html";
+    btn.textContent = "شروع یادگیری ←";
+    box.append(info, btn);
   }
-  synth.speak(u);
 }
 
-/* ================= تمرین تلفظ (تشخیص گفتار) ================= */
-const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+/* ---------- کارت‌های درس ---------- */
+function courseCard(course){
+  const card = document.createElement("article");
+  card.className = "course-card";
+  card.dataset.search = (course.title + " " + course.desc).toLowerCase();
 
-function levenshtein(a, b){
-  const m = a.length, n = b.length;
-  if (!m) return n;
-  if (!n) return m;
-  let prev = Array.from({length: n + 1}, (_, i) => i);
-  for (let i = 1; i <= m; i++){
-    const cur = [i];
-    for (let j = 1; j <= n; j++){
-      cur[j] = Math.min(prev[j] + 1, cur[j-1] + 1, prev[j-1] + (a[i-1] === b[j-1] ? 0 : 1));
-    }
-    prev = cur;
-  }
-  return prev[n];
-}
-function similarity(said, target){
-  const norm = s => s.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
-  const a = norm(said), b = norm(target);
-  if (!a || !b) return 0;
-  const dist = levenshtein(a, b);
-  return Math.max(0, Math.round((1 - dist / Math.max(a.length, b.length)) * 100));
-}
-
-/* ================= ساخت کارت‌ها ================= */
-function buildCard(item){
-  const card = el("article", "card");
-  card.dataset.id = itemId(item);
-
-  const top = el("div", "card-top");
-  top.append(el("span", "num", faNum(item.n)));
-  top.append(el("span", "kind", isWord(item) ? "کلمه" : "جمله"));
-  top.append(el("span", "learned-badge", "✓ یادگرفته‌شده"));
+  const top = document.createElement("div");
+  top.className = "top";
+  top.append(Object.assign(document.createElement("span"), { className:"icon", textContent:course.icon, ariaHidden:"true" }));
+  const h3 = document.createElement("h3");
+  h3.textContent = course.title;
+  top.append(h3);
   card.append(top);
 
-  card.append(el("div", "en-text en", item.en));
-  card.append(el("div", "fa-text", item.fa));
+  card.append(Object.assign(document.createElement("p"), { className:"desc", textContent:course.desc }));
 
-  const actions = el("div", "actions");
+  const ready = course.modules.filter(m => m.status === "ready").length;
+  const p = darsyarOverallProgress(course);
+  const meta = document.createElement("div");
+  meta.className = "meta";
+  meta.innerHTML = faNum(course.modules.length) + " پودمان · <b>" + faNum(ready) + " پودمان قابل یادگیری</b>";
+  card.append(meta);
 
-  const bPlay = el("button", "btn btn-play", "🔊 شنیدن تلفظ");
-  bPlay.type = "button";
-  bPlay.addEventListener("click", () => speak(item.en, bPlay));
+  const pw = document.createElement("div");
+  pw.className = "overall-wrap";
+  const bar = document.createElement("progress");
+  bar.value = p.pct; bar.max = 100;
+  bar.setAttribute("aria-label", "پیشرفت درس " + course.title);
+  const lbl = document.createElement("span");
+  lbl.className = "progress-label";
+  lbl.textContent = faNum(p.pct) + "٪";
+  pw.append(bar, lbl);
+  card.append(pw);
 
-  const bRepeat = el("button", "btn btn-repeat", "↻ تکرار");
-  bRepeat.type = "button";
-  bRepeat.addEventListener("click", () => speak(item.en, bPlay));
-
-  const bLearn = el("button", "btn btn-learn", "✓ یاد گرفتم");
-  bLearn.type = "button";
-  bLearn.setAttribute("aria-pressed", "false");
-  bLearn.addEventListener("click", () => {
-    const id = itemId(item);
-    if (learned[id]){ delete learned[id]; } else { learned[id] = true; }
-    saveLearned();
-    updateLearnedUI(card, item, bLearn);
-    updateStats();
-    applyFilters();
-  });
-
-  actions.append(bPlay, bRepeat, bLearn);
-
-  if (item.note){
-    const bNote = el("button", "btn btn-note", "📖 یادداشت تخصصی");
-    bNote.type = "button";
-    bNote.setAttribute("aria-expanded", "false");
-    const noteBox = el("div", "note", item.note);
-    bNote.addEventListener("click", () => {
-      const open = noteBox.classList.toggle("open");
-      bNote.setAttribute("aria-expanded", String(open));
-    });
-    actions.append(bNote);
-    card.append(actions);
-    card.append(noteBox);
-  } else {
-    card.append(actions);
-  }
-
-  const practice = buildPractice(item, bPlay);
-  const bPractice = el("button", "btn btn-practice", "🗣️ تمرین تلفظ");
-  bPractice.type = "button";
-  bPractice.setAttribute("aria-expanded", "false");
-  bPractice.addEventListener("click", () => {
-    const open = practice.classList.toggle("open");
-    bPractice.setAttribute("aria-expanded", String(open));
-    if (open) speak(item.en, bPlay);
-  });
-  actions.append(bPractice);
-  card.append(practice);
-
-  updateLearnedUI(card, item, bLearn);
+  const foot = document.createElement("div");
+  foot.className = "foot";
+  const link = document.createElement("a");
+  link.className = "btn-ghost";
+  link.href = course.page;
+  link.textContent = "مشاهده پودمان‌ها ←";
+  foot.append(link);
+  card.append(foot);
   return card;
 }
 
-function buildPractice(item, bPlay){
-  const p = el("div", "practice");
-  p.append(el("div", "hint",
-    SR
-      ? "ابتدا گوش دهید، سپس دکمهٔ ضبط را بزنید و عبارت را بلند تکرار کنید. نتیجه به‌صورت تقریبی مقایسه می‌شود."
-      : "مرورگر شما از تشخیص گفتار پشتیبانی نمی‌کند؛ حالت تمرین شنیداری فعال است: چند بار گوش دهید و بلند تکرار کنید."
-  ));
-  const row = el("div", "row");
-
-  const bAgain = el("button", "btn", "🔊 دوباره گوش کن");
-  bAgain.type = "button";
-  bAgain.addEventListener("click", () => speak(item.en, bPlay));
-  row.append(bAgain);
-
-  if (SR){
-    const bMic = el("button", "btn", "🎤 ضبط تلفظ من");
-    bMic.type = "button";
-    const res = el("div", "mic-result");
-    const msg = el("div");
-    const bar = el("div", "score-bar");
-    const fill = el("span");
-    bar.append(fill);
-    res.append(msg, bar);
-    let rec = null;
-    bMic.addEventListener("click", () => {
-      if (rec){ rec.stop(); return; }
-      rec = new SR();
-      rec.lang = $("accent").value;
-      rec.interimResults = false;
-      rec.maxAlternatives = 3;
-      res.classList.add("show");
-      msg.textContent = "در حال شنیدن… عبارت را بگویید.";
-      fill.style.width = "0";
-      bMic.textContent = "⏹ پایان ضبط";
-      rec.onresult = (ev) => {
-        const said = Array.from(ev.results[0]).map(r => r.transcript).join(" / ");
-        const score = Math.max(...Array.from(ev.results[0]).map(r => similarity(r.transcript, item.en)));
-        msg.textContent = "شنیده شد: «" + said + "» — شباهت تقریبی: " + faNum(score) + "٪";
-        fill.style.width = score + "%";
-        fill.classList.toggle("score-good", score >= 75);
-      };
-      rec.onerror = (ev) => {
-        msg.textContent = ev.error === "not-allowed"
-          ? "دسترسی به میکروفون داده نشد. لطفاً اجازهٔ دسترسی بدهید."
-          : "تشخیص گفتار ممکن نشد. فقط از حالت تمرین شنیداری استفاده کنید.";
-      };
-      rec.onend = () => { bMic.textContent = "🎤 ضبط تلفظ من"; rec = null; };
-      try { rec.start(); } catch (_) { rec = null; bMic.textContent = "🎤 ضبط تلفظ من"; }
-    });
-    row.append(bMic);
-    p.append(row, res);
-  } else {
-    p.append(row);
-  }
-  return p;
+function comingCourseCard(){
+  const card = document.createElement("article");
+  card.className = "course-card card-coming";
+  const top = document.createElement("div");
+  top.className = "top";
+  top.append(Object.assign(document.createElement("span"), { className:"icon", textContent:"➕", ariaHidden:"true" }));
+  top.append(Object.assign(document.createElement("h3"), { textContent:"درس جدید اضافه خواهد شد" }));
+  card.append(top);
+  card.append(Object.assign(document.createElement("p"), { className:"desc",
+    textContent:"درس‌های رشته تحصیلی تو به‌تدریج به درس‌یار اضافه می‌شوند." }));
+  return card;
 }
 
-function updateLearnedUI(card, item, bLearn){
-  const isLearned = !!learned[itemId(item)];
-  card.classList.toggle("learned", isLearned);
-  bLearn.classList.toggle("learned", isLearned);
-  bLearn.textContent = isLearned ? "✗ یادنگرفتم" : "✓ یاد گرفتم";
-  bLearn.setAttribute("aria-pressed", String(isLearned));
-}
-
-/* ================= فیلتر و جست‌وجو ================= */
-function filteredItems(){
-  const q = state.search.trim().toLowerCase();
-  return DATA.filter(item => {
-    if (state.cat !== "all" && item.cat !== state.cat) return false;
-    const learnedFlag = !!learned[itemId(item)];
-    if (state.filter === "learned" && !learnedFlag) return false;
-    if (state.filter === "unlearned" && learnedFlag) return false;
-    if (state.filter === "word" && !isWord(item)) return false;
-    if (state.filter === "sentence" && isWord(item)) return false;
-    if (q){
-      const hay = [
-        item.en, item.fa, String(item.n), faNum(item.n), item.note || "", CATEGORIES[item.cat]
-      ].join(" ").toLowerCase();
-      if (!hay.includes(q)) return false;
-    }
-    return true;
+function renderCourses(filter){
+  const wrap = $id("courses");
+  wrap.textContent = "";
+  const q = (filter || "").trim().toLowerCase();
+  let shown = 0;
+  DARSYAR.courses.forEach(course => {
+    const card = courseCard(course);
+    if (!q || card.dataset.search.includes(q)){ wrap.append(card); shown++; }
   });
+  if (!q){ wrap.append(comingCourseCard()); shown++; }
+  $id("courses-empty").hidden = shown > 0;
 }
 
-function applyFilters(){
-  const grid = $("grid");
-  grid.textContent = "";
-  const items = filteredItems();
-  items.forEach(item => grid.append(buildCard(item)));
-  $("cards-empty").hidden = items.length > 0;
-  $("result-count").textContent = "نمایش " + faNum(items.length) + " مورد از " + faNum(DATA.length);
-  state.reviewOrder = items.map(i => DATA.indexOf(i));
-  state.reviewIdx = Math.min(state.reviewIdx, Math.max(0, items.length - 1));
-  state.quizOrder = state.reviewOrder.slice();
-  state.quizIdx = Math.min(state.quizIdx, Math.max(0, items.length - 1));
-  renderReview();
-  renderQuiz();
-}
-
-/* ================= آمار و پیشرفت ================= */
-function updateStats(){
-  const total = DATA.length;
-  const count = DATA.filter(i => learned[itemId(i)]).length;
-  const pct = total ? Math.round((count / total) * 100) : 0;
-  $("stat-total").textContent = faNum(total);
-  $("stat-learned").textContent = faNum(count);
-  $("progress").value = pct;
-  $("progress-label").textContent = faNum(pct) + "٪";
-}
-
-/* ================= مرور و تمرین ================= */
-function renderReview(){
-  const list = filteredItems();
-  const wrap = $("rv-fa-wrap");
-  if (!list.length){
-    $("rv-num").textContent = "";
-    $("rv-en").textContent = "موردی برای مرور وجود ندارد.";
-    $("rv-fa").textContent = "";
-    $("rv-counter").textContent = "";
-    wrap.classList.remove("hidden-fa");
-    return;
-  }
-  if (state.reviewIdx >= list.length) state.reviewIdx = list.length - 1;
-  const item = list[state.reviewIdx];
-  $("rv-num").textContent = "شمارهٔ " + faNum(item.n);
-  $("rv-en").textContent = item.en;
-  $("rv-fa").textContent = item.fa;
-  wrap.classList.toggle("hidden-fa", !state.reviewRevealed);
-  $("rv-counter").textContent = "کارت " + faNum(state.reviewIdx + 1) + " از " + faNum(list.length);
-  const isLearned = !!learned[itemId(item)];
-  const b = $("rv-learn");
-  b.textContent = isLearned ? "✗ یادنگرفتم" : "✓ یاد گرفتم";
-  b.classList.toggle("btn-learn", true);
-  b.classList.toggle("learned", isLearned);
-}
-
-function reviewStep(delta){
-  const len = filteredItems().length;
-  if (!len) return;
-  state.reviewIdx = (state.reviewIdx + delta + len) % len;
-  state.reviewRevealed = false;
-  renderReview();
-}
-
-$("rv-reveal").addEventListener("click", () => { state.reviewRevealed = true; renderReview(); });
-$("rv-next").addEventListener("click", () => reviewStep(1));
-$("rv-prev").addEventListener("click", () => reviewStep(-1));
-$("rv-play").addEventListener("click", () => {
-  const item = filteredItems()[state.reviewIdx];
-  if (item) speak(item.en, $("rv-play"));
-});
-$("rv-learn").addEventListener("click", () => {
-  const item = filteredItems()[state.reviewIdx];
-  if (!item) return;
-  const id = itemId(item);
-  if (learned[id]) delete learned[id]; else learned[id] = true;
-  saveLearned();
-  updateStats();
-  renderReview();
+/* ---------- تنظیمات ---------- */
+$id("btn-settings").addEventListener("click", () => $id("settings-dialog").showModal());
+$id("btn-close-settings").addEventListener("click", () => $id("settings-dialog").close());
+$id("btn-reset-all").addEventListener("click", () => {
+  if (!confirm("همهٔ پیشرفت یادگیری در همهٔ درس‌ها و پودمان‌ها پاک شود؟ این عمل قابل بازگشت نیست.")) return;
+  ["elq_learned","elq_rate","elq_accent","elq_voice","darsyar_last"].forEach(k => localStorage.removeItem(k));
+  renderOverall();
+  renderContinue();
+  renderCourses($id("course-search").value);
+  $id("settings-dialog").close();
 });
 
-/* ================= آزمون ================= */
-function renderQuiz(){
-  const list = filteredItems();
-  const wrap = $("qz-fa-wrap");
-  if (!list.length){
-    $("qz-num").textContent = "";
-    $("qz-en").textContent = "موردی برای آزمون وجود ندارد.";
-    $("qz-fa").textContent = "";
-    $("qz-counter").textContent = "";
-    wrap.classList.remove("hidden-fa");
-    return;
-  }
-  if (state.quizIdx >= list.length) state.quizIdx = list.length - 1;
-  const item = list[state.quizIdx];
-  $("qz-num").textContent = "شمارهٔ " + faNum(item.n);
-  $("qz-en").textContent = item.en;
-  $("qz-fa").textContent = item.fa;
-  wrap.classList.toggle("hidden-fa", !state.quizRevealed);
-  $("qz-counter").textContent = "سؤال " + faNum(state.quizIdx + 1) + " از " + faNum(list.length);
-  $("qz-reveal").hidden = state.quizRevealed;
-  $("qz-next").hidden = !state.quizRevealed;
-}
+$id("course-search").addEventListener("input", (e) => renderCourses(e.target.value));
 
-$("qz-reveal").addEventListener("click", () => { state.quizRevealed = true; renderQuiz(); });
-$("qz-next").addEventListener("click", () => {
-  const len = filteredItems().length;
-  if (!len) return;
-  state.quizIdx = (state.quizIdx + 1) % len;
-  state.quizRevealed = false;
-  renderQuiz();
-});
-$("qz-play").addEventListener("click", () => {
-  const item = filteredItems()[state.quizIdx];
-  if (item) speak(item.en, $("qz-play"));
-});
-
-/* ================= تب‌ها ================= */
-document.querySelectorAll(".tab-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".tab-btn").forEach(b => b.setAttribute("aria-selected", "false"));
-    btn.setAttribute("aria-selected", "true");
-    document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
-    $("panel-" + btn.dataset.tab).classList.add("active");
-    stopSpeech();
-  });
-});
-
-/* ================= رویدادهای عمومی ================= */
-/* هدر جمع‌شونده هنگام اسکرول برای دید بیشتر
-   هدر fixed است، پس تغییر حالتش چیدمان و اسکرول را دستکاری نمی‌کند؛
-   فقط کلاس عوض می‌شود — بدون جبران اسکرول، بدون پرش، بدون حلقه */
-const headerEl = document.querySelector("header");
-let headerCompact = false, headerTick = false;
-function setHeaderCompact(should){
-  headerCompact = should;
-  headerEl.classList.toggle("compact", should);
-}
-function updateHeaderCompact(y){
-  const should = y > 44 ? true : (y < 12 ? false : headerCompact);
-  if (should !== headerCompact) setHeaderCompact(should);
-}
-window.addEventListener("scroll", () => {
-  if (!headerTick){
-    headerTick = true;
-    requestAnimationFrame(() => {
-      updateHeaderCompact(window.scrollY);
-      headerTick = false;
-    });
-  }
-}, { passive: true });
-
-/* فضا رزرو شده برای هدر fixed: همیشه برابر ارتفاع هدر در حالت کامل */
-function syncHeaderSpace(){
-  const was = headerCompact;
-  headerEl.classList.remove("compact");
-  headerCompact = false;
-  document.body.style.paddingTop = headerEl.offsetHeight + "px";
-  updateHeaderCompact(window.scrollY);
-}
-window.addEventListener("resize", syncHeaderSpace);
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncHeaderSpace);
-
-$("search").addEventListener("input", (e) => {
-  state.search = e.target.value;
-  state.reviewIdx = 0; state.quizIdx = 0;
-  state.reviewRevealed = false; state.quizRevealed = false;
-  applyFilters();
-});
-$("filter").addEventListener("change", (e) => {
-  state.filter = e.target.value;
-  state.reviewIdx = 0; state.quizIdx = 0;
-  state.reviewRevealed = false; state.quizRevealed = false;
-  applyFilters();
-});
-$("accent").addEventListener("change", (e) => {
-  localStorage.setItem(LS_ACCENT, e.target.value);
-  warnedNoVoice = false;
-});
-$("rate").addEventListener("change", (e) => {
-  localStorage.setItem(LS_RATE, e.target.value);
-});
-$("voice").addEventListener("change", (e) => {
-  localStorage.setItem(LS_VOICE, e.target.value);
-  warnedNoVoice = false;
-});
-
-$("btn-reset").addEventListener("click", () => {
-  if (!confirm("همهٔ پیشرفت یادگیری شما پاک شود؟ این عمل قابل بازگشت نیست.")) return;
-  learned = {};
-  saveLearned();
-  updateStats();
-  applyFilters();
-  showToast("پیشرفت شما پاک شد.");
-});
-
-document.addEventListener("keydown", (e) => {
-  const tag = (e.target.tagName || "").toLowerCase();
-  if (tag === "input" || tag === "select" || tag === "textarea") return;
-  const active = document.querySelector(".tab-btn[aria-selected=\"true\"]").dataset.tab;
-  if (e.key === "ArrowLeft" && (active === "review")) reviewStep(1);
-  if (e.key === "ArrowRight" && (active === "review")) reviewStep(-1);
-  if (e.key === " " && active === "review"){ e.preventDefault(); state.reviewRevealed = true; renderReview(); }
-  if (e.key === " " && active === "quiz"){ e.preventDefault(); state.quizRevealed = true; renderQuiz(); }
-});
-
-/* ================= دسته‌بندی‌ها ================= */
-function buildChips(){
-  const chips = $("chips");
-  const mk = (val, label) => {
-    const c = el("button", "chip", label);
-    c.type = "button";
-    c.setAttribute("aria-pressed", String(state.cat === val));
-    c.addEventListener("click", () => {
-      state.cat = val;
-      state.reviewIdx = 0; state.quizIdx = 0;
-      state.reviewRevealed = false; state.quizRevealed = false;
-      chips.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", "false"));
-      c.setAttribute("aria-pressed", "true");
-      applyFilters();
-    });
-    return c;
-  };
-  chips.append(mk("all", "همه دسته‌ها"));
-  Object.keys(CATEGORIES).forEach(k => chips.append(mk(k, CATEGORIES[k])));
-}
-
-/* ================= راه‌اندازی ================= */
-(function init(){
-  const savedRate = localStorage.getItem(LS_RATE);
-  if (savedRate) $("rate").value = savedRate;
-  const savedAccent = localStorage.getItem(LS_ACCENT);
-  if (savedAccent) $("accent").value = savedAccent;
-  const savedVoice = localStorage.getItem(LS_VOICE);
-  if (savedVoice) $("voice").value = savedVoice;
-  buildChips();
-  updateStats();
-  applyFilters();
-})();
+renderOverall();
+renderContinue();
+renderCourses("");
 </script>
 </body>
 </html>
