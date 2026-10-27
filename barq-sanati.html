@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="نقشه‌های آموزشی برق صنعتی — پودمان اول کتاب نصب و راه‌اندازی سیستم‌های کنترلی مکاترونیکی: راه‌اندازی با منبع تک‌فاز، چپ‌گرد/راست‌گرد و مدار قدرت ستاره–مثلث.">
+<title>نقشه‌های برق صنعتی — پودمان اول | نصب و راه‌اندازی سیستم‌های کنترلی مکاترونیکی</title>
+<link rel="preload" href="fonts/Vazirmatn-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Vazirmatn-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face{
+    font-family:"Vazirmatn";
+    src:url("fonts/Vazirmatn-Regular.woff2") format("woff2");
+    font-weight:400;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:"Vazirmatn";
+    src:url("fonts/Vazirmatn-Bold.woff2") format("woff2");
+    font-weight:700;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:"Vazirmatn";
+    src:url("fonts/Vazirmatn-ExtraBold.woff2") format("woff2");
+    font-weight:800;font-style:normal;font-display:swap;
+  }
+  :root{
+    --bg:#F7F8FC; --card:#FFFFFF; --primary:#635BFF; --primary-soft:#EFEEFF;
+    --text:#20243A; --muted:#73788C; --border:#E8EAF2;
+    --ok:#16A37A; --warn:#B45309; --warn-bg:#FFF8EC; --danger:#DC2626; --danger-bg:#FEF2F2;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:"Vazirmatn","Noto Sans Arabic",sans-serif;
+    font-size:16px;line-height:2;
+  }
+  header{
+    background:var(--card);border-bottom:1px solid var(--border);
+    padding:20px 16px 16px;
+  }
+  .head-inner{max-width:920px;margin:0 auto}
+  h1{font-size:1.5rem;font-weight:800;margin:0 0 2px;line-height:1.5}
+  .head-sub{color:var(--muted);font-size:.9rem;margin:0}
+  .badge{
+    display:inline-block;background:var(--warn-bg);color:var(--warn);
+    border:1px solid #F5D9A8;border-radius:999px;padding:1px 12px;
+    font-size:.8rem;font-weight:700;margin-top:8px;
+  }
+  nav.toc{
+    max-width:920px;margin:14px auto 0;padding:0 16px;
+    display:flex;flex-wrap:wrap;gap:8px;
+  }
+  nav.toc a{
+    background:var(--card);border:1px solid var(--border);border-radius:999px;
+    padding:5px 14px;font-size:.85rem;font-weight:700;color:var(--text);
+    text-decoration:none;transition:border-color .15s;
+  }
+  nav.toc a:hover{border-color:var(--primary);color:var(--primary)}
+  main{max-width:920px;margin:0 auto;padding:20px 16px 60px}
+  .banner{
+    background:var(--danger-bg);border:1px solid #FECACA;border-radius:12px;
+    padding:12px 16px;margin:0 0 26px;font-size:.92rem;
+  }
+  .banner b{color:var(--danger)}
+  section{
+    background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:22px 20px;margin-bottom:26px;
+  }
+  h2{font-size:1.2rem;font-weight:800;margin:0 0 4px}
+  h3{font-size:1rem;font-weight:800;margin:26px 0 8px;color:var(--primary-dark,#4A42E0)}
+  .sec-desc{color:var(--muted);font-size:.92rem;margin:0 0 14px}
+  .fig{
+    border:1px solid var(--border);border-radius:12px;background:#FDFDFF;
+    padding:14px;margin:12px 0;overflow-x:auto;
+  }
+  .fig-title{font-weight:800;font-size:.92rem;margin:0 0 8px}
+  .fig svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  .fig figcaption,.fig .fig-note{font-size:.8rem;color:var(--muted);margin-top:8px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem;margin:8px 0 4px}
+  th,td{border:1px solid var(--border);padding:6px 10px;text-align:start;vertical-align:top}
+  th{background:var(--primary-soft);font-weight:800;white-space:nowrap}
+  tr:nth-child(even) td{background:#FBFBFE}
+  ul{margin:6px 0;padding-inline-start:22px}
+  li{margin-bottom:2px}
+  .warnbox{
+    background:var(--warn-bg);border:1px solid #F5D9A8;border-radius:10px;
+    padding:10px 14px;font-size:.88rem;margin:12px 0;
+  }
+  .warnbox b{color:var(--warn)}
+  .legend-row{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin:10px 0;font-size:.85rem}
+  .legend-row svg{flex:0 0 auto}
+  footer{
+    max-width:920px;margin:0 auto;padding:0 16px 50px;
+    color:var(--muted);font-size:.85rem;
+  }
+  .status{
+    background:var(--primary-soft);border:1px solid #DCD9FF;border-radius:12px;
+    padding:10px 16px;font-size:.9rem;
+  }
+  /* ---------- SVG مشترک ---------- */
+  svg .wire{stroke:#20243A;stroke-width:2;fill:none;stroke-linecap:round}
+  svg .mech{stroke:#A6AAC0;stroke-width:1.4;stroke-dasharray:5 4;fill:none}
+  svg .dot{fill:#20243A}
+  svg .term{fill:#fff;stroke:#20243A;stroke-width:1.6}
+  svg text{font-family:"Vazirmatn","Noto Sans Arabic",sans-serif;font-size:13px;fill:#20243A}
+  svg .lbl{font-size:12px;font-weight:700}
+  svg .small{font-size:11px;fill:#73788C}
+  svg .tag{fill:#635BFF;font-weight:700}
+  svg .warn-t{fill:#B45309;font-weight:700}
+  @media (max-width:640px){
+    body{font-size:15px}
+    h1{font-size:1.2rem}
+    section{padding:16px 14px}
+    svg text{font-size:12px}
+  }
+  @media print{
+    body{background:#fff}
+    nav.toc{display:none}
+    section{border:none;padding:0 0 18px;break-inside:avoid-page}
+    .fig{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <h1>نقشه‌های برق صنعتی</h1>
+    <p class="head-sub">پودمان اول کتاب «نصب و راه‌اندازی سیستم‌های کنترلی مکاترونیکی» — پایه دوازدهم مکاترونیک</p>
+    <span class="badge">مفهومی / نیازمند بازبینی — برای آموزش است، نه اجرا</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="فهرست نقشه‌ها">
+  <a href="#s1">۱) راه‌اندازی موتور سه‌فاز با منبع تک‌فاز (قدرت + فرمان)</a>
+  <a href="#s2">۲) چپ‌گرد–راست‌گرد (قدرت + فرمان)</a>
+  <a href="#s3">۳) ستاره–مثلث (فقط مدار قدرت)</a>
+  <a href="#legend">راهنمای نمادها</a>
+</nav>
+
+<main>
+  <div class="banner">
+    <b>هشدار ایمنی:</b> این نقشه‌ها صرفاً آموزشی و مفهومی‌اند و از روی آن‌ها به‌هیچ‌وجه سیم‌کشی برق واقعی انجام نشود.
+    پیش از هر کار عملی، منبع را قطع و ایمن‌سازی کنید، نبود ولتاژ را با ابزار آزموده‌شده بررسی کنید و نقشهٔ نهایی را
+    با دیتاشیت سازنده، استانداردهای قابل‌اجرا و بازبینی فرد صلاحیت‌دار تطبیق دهید.
+  </div>
+
+  <!-- ================= بخش ۱ ================= -->
+  <section id="s1">
+    <h2>۱) راه‌اندازی موتور سه‌فاز با منبع تک‌فاز</h2>
+    <p class="sec-desc">عنوان دقیق: «راه‌اندازی موتور سه‌فاز با منبع تک‌فاز — مدار قدرت و فرمان». عبارت «راه‌اندازی موتور سه‌فاز با برق تک‌فاز» به‌تنهایی روش اتصال را تعیین نمی‌کند؛ در این نسخهٔ آموزشی <b>روش خازنی</b> به‌صورت مفهومی ترسیم شده است.</p>
+
+    <div class="warnbox">
+      <b>فرض‌های صریح این بخش:</b>
+      <ul>
+        <li>منبع تک‌فاز ۲۳۰ ولت (L و N) — ولتاژ واقعی باید در پروژه بررسی شود.</li>
+        <li>موتور سه‌فاز کوچک و بار سبک؛ با این روش گشتاور و توان قابل‌دسترس به‌طور محسوس کاهش می‌یابد و برای هر موتوری مناسب نیست.</li>
+        <li>مقدار و نوع خازن (راه‌انداز/دائم) عمداً درج نشده است — انتخاب آن بدون دیتاشیت موتور و آزمایش ممکن نیست و حدس زدنش خطرناک است.</li>
+        <li>حفاظت با رلهٔ اضافه‌بار دو پل محدود است؛ هماهنگی حفاظتی کامل (فیوز/کلید حفاظتی مناسب) باید جداگانه طراحی شود.</li>
+      </ul>
+    </div>
+
+    <h3>مدار قدرت</h3>
+    <figure class="fig">
+      <div class="fig-title">نقشهٔ ۱ — مدار قدرت: راه‌اندازی موتور سه‌فاز با منبع تک‌فاز (روش خازنی، مفهومی)</div>
+      <svg viewBox="0 0 780 470" role="img" aria-label="مدار قدرت راه‌اندازی موتور سه‌فاز با منبع تک‌فاز">
+        <!-- منبع -->
+        <text x="160" y="28" text-anchor="middle" class="lbl">L — فاز (۲۳۰V فرضی)</text>
+        <text x="440" y="28" text-anchor="middle" class="lbl">N</text>
+        <!-- مسیر L -->
+        <path class="wire" d="M160 38 V92"/>
+        <circle class="term" cx="160" cy="97" r="2.4"/>
+        <path class="wire" d="M160 102 L149 118"/>
+        <circle class="term" cx="160" cy="123" r="2.4"/>
+        <path class="wire" d="M160 128 V170"/>
+        <!-- مسیر N -->
+        <path class="wire" d="M440 38 V92"/>
+        <circle class="term" cx="440" cy="97" r="2.4"/>
+        <path class="wire" d="M440 102 L429 118"/>
+        <circle class="term" cx="440" cy="123" r="2.4"/>
+        <path class="wire" d="M440 128 V170"/>
+        <!-- اتصال مکانیکی QF1 -->
+        <path class="mech" d="M160 110 H440"/>
+        <text x="140" y="114" text-anchor="end" class="lbl">QF1 — کلید حفاظتی ۲پل</text>
+        <!-- KM1 -->
+        <path class="wire" d="M160 170 V186"/>
+        <circle class="term" cx="160" cy="188" r="2.4"/>
+        <path class="wire" d="M160 193 L149 209"/>
+        <circle class="term" cx="160" cy="214" r="2.4"/>
+        <path class="wire" d="M160 219 V240"/>
+        <path class="wire" d="M440 170 V186"/>
+        <circle class="term" cx="440" cy="188" r="2.4"/>
+        <path class="wire" d="M440 193 L429 209"/>
+        <circle class="term" cx="440" cy="214" r="2.4"/>
+        <path class="wire" d="M440 219 V240"/>
+        <path class="mech" d="M160 200 H440"/>
+        <text x="140" y="200" text-anchor="end" class="lbl">KM1 — کنتاکتور ۲پل</text>
+        <!-- رله اضافه‌بار -->
+        <rect class="wire" x="148" y="240" width="24" height="40" rx="3" fill="#fff"/>
+        <rect class="wire" x="428" y="240" width="24" height="40" rx="3" fill="#fff"/>
+        <path class="wire" d="M160 280 V310 M440 280 V350"/>
+        <text x="140" y="264" text-anchor="end" class="lbl">OL — رلهٔ اضافه‌بار</text>
+        <!-- گره L و شاخه خازن -->
+        <circle class="dot" cx="160" cy="310" r="3.5"/>
+        <path class="wire" d="M160 310 V390"/>
+        <!-- U1 -->
+        <path class="wire" d="M160 310 H657"/>
+        <text x="666" y="306" class="lbl">U1</text>
+        <!-- V1 -->
+        <path class="wire" d="M440 350 H638"/>
+        <text x="646" y="346" class="lbl">V1</text>
+        <!-- خازن -->
+        <path class="wire" d="M160 390 H372"/>
+        <path class="wire" d="M388 390 H657"/>
+        <path class="wire" d="M376 372 V408 M384 372 V408"/>
+        <text x="380" y="362" text-anchor="middle" class="tag">C</text>
+        <text x="380" y="428" text-anchor="middle" class="small">خازن (نوع و مقدار: طبق دیتاشیت موتور / آزمایش — درج نشده)</text>
+        <!-- موتور -->
+        <circle class="wire" cx="690" cy="350" r="52" fill="#fff"/>
+        <text x="690" y="347" text-anchor="middle" style="font-weight:800;font-size:17px">M</text>
+        <text x="690" y="368" text-anchor="middle" class="lbl">3~</text>
+        <text x="690" y="452" text-anchor="middle" class="small">موتور سه‌فاز — اتصال مطابق پلاک (فرض)</text>
+      </svg>
+      <figcaption>خازن از سمت فاز به ترمینال سوم (W1) متصل می‌شود تا میدان چرخان ساختگی ایجاد کند. توپولوژی دقیق و مقادیر، بدون دادهٔ واقعی موتور قابل تأیید نیست.</figcaption>
+    </figure>
+
+    <h3>مدار فرمان</h3>
+    <figure class="fig">
+      <div class="fig-title">نقشهٔ ۲ — مدار فرمان: استاپ NC، استارت NO، خودنگهدار و کنتاکت NC اضافه‌بار</div>
+      <svg viewBox="0 0 780 300" role="img" aria-label="مدار فرمان راه‌اندازی تک‌فاز">
+        <defs>
+          <g id="nc-h">
+            <path class="wire" d="M0 12 H18"/><circle class="term" cx="21" cy="12" r="2.4"/>
+            <path class="wire" d="M24 12 L40 2"/><circle class="term" cx="39" cy="12" r="2.4"/>
+            <path class="wire" d="M42 12 L38 4"/>
+            <path class="wire" d="M42 12 H60"/>
+          </g>
+          <g id="no-h">
+            <path class="wire" d="M0 12 H18"/><circle class="term" cx="21" cy="12" r="2.4"/>
+            <path class="wire" d="M24 12 L40 2"/><circle class="term" cx="39" cy="12" r="2.4"/>
+            <path class="wire" d="M42 12 H60"/>
+          </g>
+          <g id="coil-h">
+            <rect class="wire" x="12" y="1" width="36" height="22" rx="3" fill="#fff"/>
+            <path class="wire" d="M0 12 H12 M48 12 H60"/>
+          </g>
+        </defs>
+        <!-- ریل‌ها (قطعه‌قطعه تا روی عناصر اتصال کوتاه نشود) -->
+        <path class="wire" d="M60 60 H120 M180 60 H230 M290 60 H380 M440 60 H500 M560 60 H700"/>
+        <path class="wire" d="M60 240 H700 M700 60 V240"/>
+        <text x="60" y="44" class="lbl">L (فرمان — همان منبع تک‌فاز، فرض)</text>
+        <text x="700" y="264" text-anchor="end" class="lbl">N</text>
+        <!-- زنجیره -->
+        <use href="#nc-h" x="120" y="48"/>
+        <text x="150" y="38" text-anchor="middle" class="lbl">استاپ SB0 (NC)</text>
+        <use href="#nc-h" x="230" y="48"/>
+        <text x="260" y="38" text-anchor="middle" class="lbl">OL اضافه‌بار (95-96)</text>
+        <circle class="dot" cx="350" cy="60" r="3.5"/>
+        <use href="#no-h" x="380" y="48"/>
+        <text x="410" y="38" text-anchor="middle" class="lbl">استارت SB1 (NO)</text>
+        <circle class="dot" cx="470" cy="60" r="3.5"/>
+        <use href="#coil-h" x="500" y="48"/>
+        <text x="530" y="38" text-anchor="middle" class="lbl">بوبین KM1 (A1-A2)</text>
+        <!-- خودنگهدار -->
+        <path class="wire" d="M350 60 V140 H380"/>
+        <use href="#no-h" x="380" y="128"/>
+        <path class="wire" d="M440 140 H470 V60"/>
+        <text x="425" y="168" text-anchor="middle" class="small">کنتاکت کمکی NO خودنگهدار (13-14)</text>
+      </svg>
+      <figcaption>منطق: استاپ در مسیر اصلی؛ با فشردن استارت بوبین وصل می‌شود و کنتاکت کمکی موازی استارت مسیر را نگه می‌دارد؛ عمل‌کردن اضافه‌بار یا بازشدن استاپ، فرمان را قطع می‌کند.</figcaption>
+    </figure>
+
+    <h3>جدول تجهیزات (BOM مفهومی)</h3>
+    <table>
+      <tr><th>نام قراردادی</th><th>تجهیز</th><th>مشخصات</th><th>یادداشت</th></tr>
+      <tr><td>QF1</td><td>کلید حفاظتی ۲پل</td><td>جریان نامی: با محاسبه</td><td>حفاظت اتصال کوتاه — مقداردهی فقط با دادهٔ واقعی</td></tr>
+      <tr><td>KM1</td><td>کنتاکتور ۲پل + ۱ کنتاکت کمکی NO</td><td>ولتاژ بوبین = ولتاژ فرمان</td><td>ولتاژ بوبین را با ولتاژ قدرت اشتباه نگیرید</td></tr>
+      <tr><td>OL</td><td>رلهٔ اضافه‌بار ۲پل</td><td>تنظیم مطابق جریان نامی موتور</td><td>جایگزین حفاظت اتصال کوتاه نیست</td></tr>
+      <tr><td>C</td><td>خازن (نوع/مقدار تعیین‌نشده)</td><td>—</td><td>بدون دیتاشیت و آزمایش مقداردهی نکنید</td></tr>
+    </table>
+
+    <div class="warnbox"><b>محدودیت:</b> این توپولوژی گشتاور شروع و توان کمتری نسبت به تغذیهٔ سه‌فاز واقعی فراهم می‌کند و برای بار سنگین مناسب نیست. روش‌های دیگر (اینورتر تک‌فاز به سه‌فاز و…) متفاوت‌اند و اینجا ترسیم نشده‌اند.</div>
+  </section>
+
+  <!-- ================= بخش ۲ ================= -->
+  <section id="s2">
+    <h2>۲) مدار چپ‌گرد–راست‌گرد موتور سه‌فاز</h2>
+    <p class="sec-desc">تغییر جهت چرخش با جابه‌جایی دو فاز از سه فاز انجام می‌شود. دو کنتاکتور KM1 (راست‌گرد) و KM2 (چپ‌گرد) هرگز نباید هم‌زمان وصل شوند — <b>اینترلاک الکتریکی</b> در مدار فرمان و در صورت نیاز قفل مکانیکی الزامی است.</p>
+
+    <h3>مدار قدرت</h3>
+    <figure class="fig">
+      <div class="fig-title">نقشهٔ ۳ — مدار قدرت: معکوس‌کننده با دو کنتاکتور و جابه‌جایی دو فاز (مفهومی)</div>
+      <svg viewBox="0 0 780 640" role="img" aria-label="مدار قدرت چپ‌گرد راست‌گرد">
+        <text x="200" y="16" text-anchor="middle" class="small">منبع سه‌فاز 400V (فرضی)</text>
+        <text x="100" y="34" text-anchor="middle" class="lbl">L1</text>
+        <text x="200" y="34" text-anchor="middle" class="lbl">L2</text>
+        <text x="300" y="34" text-anchor="middle" class="lbl">L3</text>
+        <!-- QF1 -->
+        <path class="wire" d="M100 38 V84 M200 38 V84 M300 38 V84"/>
+        <circle class="term" cx="100" cy="86" r="2.4"/><circle class="term" cx="200" cy="86" r="2.4"/><circle class="term" cx="300" cy="86" r="2.4"/>
+        <path class="wire" d="M100 90 L89 106 M200 90 L189 106 M300 90 L289 106"/>
+        <circle class="term" cx="100" cy="108" r="2.4"/><circle class="term" cx="200" cy="108" r="2.4"/><circle class="term" cx="300" cy="108" r="2.4"/>
+        <path class="wire" d="M100 113 V125 M200 113 V125 M300 113 V125"/>
+        <path class="mech" d="M100 97 H300"/>
+        <text x="86" y="101" text-anchor="end" class="lbl">QF1 — کلید حفاظتی ۳پل</text>
+        <!-- تغذیه موازی KM2 (سطوح پلکانی تا فازها به هم وصل نشوند) -->
+        <path class="wire" d="M100 125 H400 M200 135 H500 M300 145 H600"/>
+        <circle class="dot" cx="100" cy="125" r="3.5"/><circle class="dot" cx="200" cy="135" r="3.5"/><circle class="dot" cx="300" cy="145" r="3.5"/>
+        <path class="wire" d="M400 125 V154 M500 135 V154 M600 145 V154"/>
+        <text x="350" y="112" text-anchor="middle" class="small">تغذیهٔ موازی KM1 و KM2</text>
+        <!-- KM1 -->
+        <path class="wire" d="M100 125 V154 M200 125 V154 M300 125 V154"/>
+        <circle class="term" cx="100" cy="156" r="2.4"/><circle class="term" cx="200" cy="156" r="2.4"/><circle class="term" cx="300" cy="156" r="2.4"/>
+        <path class="wire" d="M100 160 L89 176 M200 160 L189 176 M300 160 L289 176"/>
+        <circle class="term" cx="100" cy="178" r="2.4"/><circle class="term" cx="200" cy="178" r="2.4"/><circle class="term" cx="300" cy="178" r="2.4"/>
+        <path class="wire" d="M100 183 V300 M200 183 V300 M300 183 V300"/>
+        <path class="mech" d="M100 167 H300"/>
+        <text x="86" y="171" text-anchor="end" class="lbl">KM1 (راست‌گرد)</text>
+        <!-- KM2 -->
+        <path class="wire" d="M400 125 V154 M500 125 V154 M600 125 V154"/>
+        <circle class="term" cx="400" cy="156" r="2.4"/><circle class="term" cx="500" cy="156" r="2.4"/><circle class="term" cx="600" cy="156" r="2.4"/>
+        <path class="wire" d="M400 160 L389 176 M500 160 L489 176 M600 160 L589 176"/>
+        <circle class="term" cx="400" cy="178" r="2.4"/><circle class="term" cx="500" cy="178" r="2.4"/><circle class="term" cx="600" cy="178" r="2.4"/>
+        <path class="wire" d="M400 183 V345 M500 183 V345 M600 183 V360"/>
+        <path class="mech" d="M400 167 H600"/>
+        <text x="614" y="171" class="lbl">KM2 (چپ‌گرد)</text>
+        <!-- خطوط KM1 -->
+        <path class="wire" d="M100 300 H340 M200 300 H440 M300 300 H540"/>
+        <circle class="dot" cx="340" cy="300" r="3.5"/><circle class="dot" cx="440" cy="300" r="3.5"/><circle class="dot" cx="540" cy="300" r="3.5"/>
+        <!-- خطوط KM2 (جابه‌جایی L1↔L3) — L3 از سطح پایین‌تر عبور می‌کند تا با گره‌های W1/V1 یکی نشود -->
+        <path class="wire" d="M400 345 H540 M500 345 H440 M600 360 H340"/>
+        <circle class="dot" cx="440" cy="345" r="3.5"/><circle class="dot" cx="540" cy="345" r="3.5"/>
+        <circle class="dot" cx="340" cy="360" r="3.5"/>
+        <!-- باس‌ها و OL -->
+        <path class="wire" d="M340 300 V345 V372 M440 300 V345 V372 M540 300 V345 V372"/>
+        <rect class="wire" x="328" y="372" width="24" height="40" rx="3" fill="#fff"/>
+        <rect class="wire" x="428" y="372" width="24" height="40" rx="3" fill="#fff"/>
+        <rect class="wire" x="528" y="372" width="24" height="40" rx="3" fill="#fff"/>
+        <path class="wire" d="M340 412 V515 M440 412 V488 M540 412 V515"/>
+        <text x="316" y="396" text-anchor="end" class="lbl">OL — رلهٔ اضافه‌بار ۳پل</text>
+        <!-- موتور -->
+        <path class="wire" d="M340 515 H394 M540 515 H486"/>
+        <circle class="wire" cx="440" cy="540" r="52" fill="#fff"/>
+        <text x="440" y="537" text-anchor="middle" style="font-weight:800;font-size:17px">M</text>
+        <text x="440" y="558" text-anchor="middle" class="lbl">3~</text>
+        <text x="340" y="505" text-anchor="middle" class="lbl">U1</text>
+        <text x="440" y="478" text-anchor="middle" class="lbl">V1</text>
+        <text x="540" y="505" text-anchor="middle" class="lbl">W1</text>
+        <text x="440" y="620" text-anchor="middle" class="small">M1 — موتور سه‌فاز | KM1: L1→U1، L2→V1، L3→W1 | KM2: L1→W1، L2→V1، L3→U1</text>
+        <text x="440" y="638" text-anchor="middle" class="warn-t">تقاطع بدون نقطه = بدون اتصال</text>
+      </svg>
+      <figcaption>KM2 دو فاز L1 و L3 را جابه‌جا می‌کند و جهت میدان چرخان (و چرخش موتور) عوض می‌شود. هم‌زمانی دو کنتاکتور = اتصال کوتاه بین دو فاز.</figcaption>
+    </figure>
+
+    <h3>مدار فرمان</h3>
+    <figure class="fig">
+      <div class="fig-title">نقشهٔ ۴ — مدار فرمان معکوس‌کننده: اینترلاک الکتریکی متقابل + خودنگهدار</div>
+      <svg viewBox="0 0 780 320" role="img" aria-label="مدار فرمان چپ‌گرد راست‌گرد">
+        <path class="wire" d="M60 80 V230 M700 80 V230"/>
+        <text x="60" y="66" text-anchor="middle" class="lbl">L فرمان</text>
+        <text x="700" y="66" text-anchor="middle" class="lbl">N</text>
+        <!-- رانگ ۱ (قطعه‌قطعه) -->
+        <path class="wire" d="M60 110 H100 M160 110 H190 M250 110 H320 M380 110 H400 M460 110 H490 M550 110 H700"/>
+        <use href="#nc-h" x="100" y="98"/>
+        <text x="130" y="90" text-anchor="middle" class="lbl">استاپ SB0 (NC)</text>
+        <use href="#nc-h" x="190" y="98"/>
+        <text x="220" y="90" text-anchor="middle" class="lbl">OL (95-96)</text>
+        <circle class="dot" cx="290" cy="110" r="3.5"/>
+        <use href="#no-h" x="320" y="98"/>
+        <text x="350" y="90" text-anchor="middle" class="lbl">استارت راست‌گرد SB1</text>
+        <use href="#nc-h" x="400" y="98"/>
+        <text x="430" y="90" text-anchor="middle" class="lbl">اینترلاک KM2 (NC)</text>
+        <use href="#coil-h" x="490" y="98"/>
+        <text x="520" y="90" text-anchor="middle" class="lbl">بوبین KM1</text>
+        <circle class="dot" cx="700" cy="110" r="3.5"/>
+        <!-- خودنگهدار KM1 -->
+        <path class="wire" d="M290 110 V78 H320"/>
+        <circle class="dot" cx="290" cy="78" r="3.5"/>
+        <use href="#no-h" x="320" y="66"/>
+        <text x="350" y="58" text-anchor="middle" class="small">خودنگهدار KM1 (13-14)</text>
+        <path class="wire" d="M380 78 H390 V110"/>
+        <circle class="dot" cx="390" cy="110" r="3.5"/>
+        <!-- رانگ ۲ (قطعه‌قطعه) -->
+        <path class="wire" d="M290 110 V180 H320 M380 180 H400 M460 180 H490 M550 180 H700"/>
+        <circle class="dot" cx="290" cy="180" r="3.5"/>
+        <use href="#no-h" x="320" y="168"/>
+        <text x="350" y="200" text-anchor="middle" class="lbl">استارت چپ‌گرد SB2</text>
+        <use href="#nc-h" x="400" y="168"/>
+        <text x="430" y="200" text-anchor="middle" class="lbl">اینترلاک KM1 (NC)</text>
+        <use href="#coil-h" x="490" y="168"/>
+        <text x="520" y="200" text-anchor="middle" class="lbl">بوبین KM2</text>
+        <circle class="dot" cx="700" cy="180" r="3.5"/>
+        <!-- خودنگهدار KM2 -->
+        <path class="wire" d="M290 180 V148 H320"/>
+        <circle class="dot" cx="290" cy="148" r="3.5"/>
+        <use href="#no-h" x="320" y="136"/>
+        <text x="350" y="128" text-anchor="middle" class="small">خودنگهدار KM2 (13-14)</text>
+        <path class="wire" d="M380 148 H390 V180"/>
+        <circle class="dot" cx="390" cy="180" r="3.5"/>
+      </svg>
+      <figcaption>کنتاکت NC هر کنتاکتور در مسیر بوبین کنتاکتور مقابل قرار دارد؛ تا KM1 وصل است، فرمان KM2 ممکن نیست و برعکس. تغییر جهت باید همیشه با توقف کامل موتور انجام شود.</figcaption>
+    </figure>
+
+    <h3>جدول تجهیزات (BOM مفهومی)</h3>
+    <table>
+      <tr><th>نام قراردادی</th><th>تجهیز</th><th>یادداشت</th></tr>
+      <tr><td>QF1</td><td>کلید حفاظتی ۳پل</td><td>حفاظت اتصال کوتاه — اندازه‌گذاری با محاسبه</td></tr>
+      <tr><td>KM1 / KM2</td><td>دو کنتاکتور ۳پل + کنتاکت‌های کمکی NO و NC</td><td>قفل مکانیکی بین دو کنتاکتور در صورت لزوم مطابق سازنده</td></tr>
+      <tr><td>OL</td><td>رلهٔ اضافه‌بار ۳پل</td><td>کنتاکت NC (95-96) در مدار فرمان</td></tr>
+      <tr><td>SB0 / SB1 / SB2</td><td>استاپ NC / دو استارت NO</td><td>شماره‌گذاری 13-14 و 21-22 قرارداد رایج است؛ با دیتاشیت تطبیق شود</td></tr>
+    </table>
+
+    <div class="warnbox"><b>ایمنی:</b> وصل هم‌زمان KM1 و KM2 اتصال کوتاه بین فازها ایجاد می‌کند. اینترلاک الکتریکی هرگز حذف نمی‌شود؛ برای کاربردهای حساس قفل مکانیکی هم لازم است. ولتاژ فرمان و مدل تجهیزات باید با دادهٔ واقعی پروژه تعیین شود.</div>
+  </section>
+
+  <!-- ================= بخش ۳ ================= -->
+  <section id="s3">
+    <h2>۳) مدار قدرت ستاره–مثلث</h2>
+    <p class="sec-desc">طبق درخواست، این بخش <b>فقط مدار قدرت</b> دارد و مدار فرمان ستاره–مثلث عمداً ترسیم نشده است. توالی عملکرد و اینترلاک فقط در متن آمده است.</p>
+
+    <div class="warnbox">
+      <b>شرط سازگاری:</b> راه‌اندازی ستاره–مثلث فقط برای موتور شش‌سرسیمی سازگار است؛ مثلاً پلاک <bdi dir="ltr">400/690 V Δ/Y</bdi> در شبکهٔ ۴۰۰ ولت (کار نهایی مثلث). موتوری با پلاک <bdi dir="ltr">230/400 V Δ/Y</b> در شبکهٔ ۴۰۰ ولت برای کار دائم باید ستاره بسته شود و برای ستاره–مثلث مناسب نیست. پلاک موتور واقعی حتماً بررسی شود.
+    </div>
+
+    <figure class="fig">
+      <div class="fig-title">نقشهٔ ۵ — فقط مدار قدرت: کنتاکتور اصلی، ستاره و مثلث با شش سرسیم موتور (مفهومی)</div>
+      <svg viewBox="0 0 800 700" role="img" aria-label="مدار قدرت ستاره مثلث">
+        <text x="420" y="14" text-anchor="middle" class="small">منبع سه‌فاز 400V (فرض)</text>
+        <text x="340" y="30" text-anchor="middle" class="lbl">L1</text>
+        <text x="420" y="30" text-anchor="middle" class="lbl">L2</text>
+        <text x="500" y="30" text-anchor="middle" class="lbl">L3</text>
+        <!-- QF1 -->
+        <path class="wire" d="M340 36 V70 M420 36 V70 M500 36 V70"/>
+        <circle class="term" cx="340" cy="72" r="2.4"/><circle class="term" cx="420" cy="72" r="2.4"/><circle class="term" cx="500" cy="72" r="2.4"/>
+        <path class="wire" d="M340 76 L329 92 M420 76 L409 92 M500 76 L489 92"/>
+        <circle class="term" cx="340" cy="94" r="2.4"/><circle class="term" cx="420" cy="94" r="2.4"/><circle class="term" cx="500" cy="94" r="2.4"/>
+        <path class="wire" d="M340 99 V140 M420 99 V140 M500 99 V140"/>
+        <path class="mech" d="M340 83 H500"/>
+        <text x="326" y="87" text-anchor="end" class="lbl">QF1 — کلید حفاظتی ۳پل</text>
+        <!-- KM1 -->
+        <circle class="term" cx="340" cy="142" r="2.4"/><circle class="term" cx="420" cy="142" r="2.4"/><circle class="term" cx="500" cy="142" r="2.4"/>
+        <path class="wire" d="M340 146 L329 162 M420 146 L409 162 M500 146 L489 162"/>
+        <circle class="term" cx="340" cy="164" r="2.4"/><circle class="term" cx="420" cy="164" r="2.4"/><circle class="term" cx="500" cy="164" r="2.4"/>
+        <path class="wire" d="M340 169 V300 M420 169 V270 M500 169 V240"/>
+        <path class="mech" d="M340 153 H500"/>
+        <text x="326" y="157" text-anchor="end" class="lbl">KM1 — کنتاکتور اصلی</text>
+        <!-- شاخه‌های مثلث -->
+        <!-- W1 -> V2 در y=240 -->
+        <circle class="dot" cx="500" cy="240" r="3.5"/>
+        <path class="wire" d="M500 240 H553"/>
+        <use href="#no-h" x="553" y="228"/>
+        <path class="wire" d="M613 240 H640 V340"/>
+        <text x="583" y="220" text-anchor="middle" class="tag">KM3 — کنتاکتور مثلث</text>
+        <!-- V1 -> U2 در y=270 -->
+        <circle class="dot" cx="420" cy="270" r="3.5"/>
+        <path class="wire" d="M420 270 H468"/>
+        <use href="#no-h" x="468" y="258"/>
+        <path class="wire" d="M528 270 H560 V340"/>
+        <!-- U1 -> W2 در y=300 -->
+        <circle class="dot" cx="340" cy="300" r="3.5"/>
+        <path class="wire" d="M340 300 H390"/>
+        <use href="#no-h" x="390" y="288"/>
+        <path class="wire" d="M450 300 H720 V340"/>
+        <!-- KM2 ستاره -->
+        <text x="630" y="332" text-anchor="middle" class="tag">KM2 — کنتاکتور ستاره</text>
+        <path class="wire" d="M560 300 V340 M640 240 V340 M720 300 V340"/>
+        <circle class="term" cx="560" cy="342" r="2.4"/><circle class="term" cx="640" cy="342" r="2.4"/><circle class="term" cx="720" cy="342" r="2.4"/>
+        <path class="wire" d="M560 346 L569 356 M640 346 L649 356 M720 346 L729 356"/>
+        <circle class="term" cx="560" cy="358" r="2.4"/><circle class="term" cx="640" cy="358" r="2.4"/><circle class="term" cx="720" cy="358" r="2.4"/>
+        <path class="wire" d="M560 358 V368 M640 358 V368 M720 358 V368"/>
+        <path class="wire" d="M560 368 H720"/>
+        <path class="wire" d="M560 368 V400 M640 368 V400 M720 368 V400"/>
+        <circle class="dot" cx="560" cy="368" r="3.5"/><circle class="dot" cx="640" cy="368" r="3.5"/><circle class="dot" cx="720" cy="368" r="3.5"/>
+        <!-- موتور -->
+        <rect class="wire" x="540" y="400" width="200" height="70" rx="8" fill="#fff"/>
+        <text x="640" y="430" text-anchor="middle" style="font-weight:800">موتور سه‌فاز شش‌سرسیم</text>
+        <text x="640" y="452" text-anchor="middle" class="small">پلاک 400/690 V Δ/Y (فرض)</text>
+        <text x="568" y="392" class="small">U2</text>
+        <text x="648" y="392" class="small">V2</text>
+        <text x="728" y="392" class="small">W2</text>
+        <text x="548" y="488" text-anchor="end" class="small">W1</text>
+        <text x="628" y="488" text-anchor="end" class="small">V1</text>
+        <text x="708" y="488" text-anchor="end" class="small">U1</text>
+        <!-- مسیرهای پایین به ترمینال‌های شروع سیم‌پیچ -->
+        <path class="wire" d="M500 240 V560 H560 V470"/>
+        <path class="wire" d="M420 270 V600 H640 V470"/>
+        <path class="wire" d="M340 300 V640 H720 V470"/>
+        <text x="640" y="672" text-anchor="middle" class="warn-t">تقاطع بدون نقطه = بدون اتصال | اتصال مثلث: U1→W2، V1→U2، W1→V2</text>
+      </svg>
+      <figcaption>در مرحلهٔ ستاره، KM2 سه انتهای سیم‌پیچ (U2/V2/W2) را به هم وصل می‌کند؛ در مرحلهٔ مثلث، KM3 سیم‌پیچ‌ها را حلقه‌ای می‌بندد و KM2 باز است. وصل هم‌زمان KM2 و KM3 اتصال کوتاه ایجاد می‌کند (اینترلاک در مدار فرمان — عمداً رسم نشده).</figcaption>
+    </figure>
+
+    <h3>جدول تجهیزات (BOM مفهومی)</h3>
+    <table>
+      <tr><th>نام قراردادی</th><th>تجهیز</th><th>یادداشت</th></tr>
+      <tr><td>QF1</td><td>کلید حفاظتی ۳پل</td><td>حفاظت اتصال کوتاه</td></tr>
+      <tr><td>KM1</td><td>کنتاکتور اصلی ۳پل</td><td>تغذیهٔ سه سرسیم شروع (U1/V1/W1)</td></tr>
+      <tr><td>KM2</td><td>کنتاکتور ستاره ۳پل</td><td>اتصال U2/V2/W2 به نقطهٔ مشترک</td></tr>
+      <tr><td>KM3</td><td>کنتاکتور مثلث ۳پل</td><td>حلقهٔ مثلث: U1→W2، V1→U2، W1→V2</td></tr>
+      <tr><td>OL</td><td>رلهٔ اضافه‌بار ۳پل</td><td>در نسخهٔ اجرایی در مسیر قدرت/فرمان طبق طراحی قرار می‌گیرد</td></tr>
+    </table>
+
+    <h3>توالی عملکرد مفهومی (متن)</h3>
+    <ul>
+      <li>با فرمان استارت، KM1 و KM2 وصل می‌شوند؛ موتور در اتصال ستاره با ولتاژ سیم‌پیچ کاهش‌یافته شروع می‌شود.</li>
+      <li>تایمر زمان تنظیم‌شده را می‌شمارد؛ سپس KM2 قطع، وقفهٔ انتقال طبق طراحی، و KM3 وصل می‌شود.</li>
+      <li>موتور در اتصال مثلث (کار دائم) به کار ادامه می‌دهد؛ استاپ یا عمل‌کردن حفاظت، کل مدار فرمان را قطع می‌کند.</li>
+      <li><b>اینترلاک بین KM2 و KM3 ضروری است</b>؛ هم‌زمانی آن دو اتصال کوتاه مستقیم شبکه است.</li>
+      <li>گشتاور شروع در ستاره حدود یک‌سوم حالت مثلث است؛ برای بارهای سنگین روش مناسب نیست.</li>
+    </ul>
+  </section>
+
+  <!-- ================= راهنمای نمادها ================= -->
+  <section id="legend">
+    <h2>راهنمای نمادها و قراردادها</h2>
+    <div class="legend-row">
+      <svg width="70" height="24" viewBox="0 0 70 24"><g transform="translate(0,0)"><use href="#no-h" x="0" y="0"/></g></svg>
+      <span>کنتاکت باز (NO) — با عمل‌کردن تجهیز بسته می‌شود</span>
+    </div>
+    <div class="legend-row">
+      <svg width="70" height="24" viewBox="0 0 70 24"><use href="#nc-h" x="0" y="0"/></svg>
+      <span>کنتاکت بسته (NC) — با عمل‌کردن تجهیز باز می‌شود</span>
+    </div>
+    <div class="legend-row">
+      <svg width="70" height="24" viewBox="0 0 70 24"><use href="#coil-h" x="0" y="0"/></svg>
+      <span>بوبین کنتاکتور/رله — ترمینال‌های A1/A2 (قرارداد رایج)</span>
+    </div>
+    <ul>
+      <li>خط‌چین خاکستری: اتصال مکانیکی بین پل‌های یک کلید چندپل.</li>
+      <li>تقاطع سیم‌ها <b>بدون نقطهٔ توپر</b> یعنی بدون اتصال الکتریکی؛ اتصال فقط با نقطهٔ توپر نشان داده می‌شود.</li>
+      <li>شماره‌گذاری کنتاکت‌های کمکی (13-14 برای NO، 21-22 برای NC، 95-96 برای رلهٔ اضافه‌بار) قرارداد رایج صنعتی است، نه قانون مطلق — همیشه با دیتاشیت تجهیز تطبیق داده شود.</li>
+      <li>نمادها به سبک آموزشی ساده‌شدهٔ IEC 60617 رسم شده‌اند و ادعای انطباق کامل استاندارد ندارند.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="status">
+    <b>وضعیت خروجی:</b> مفهومی — نیازمند بازبینی. ولتاژها، پلاک موتور، مدل تجهیزات و مقادیر حفاظت فرضی/تعیین‌نشده‌اند.
+    برای نصب واقعی: نقشهٔ تأییدشده، دیتاشیت سازنده، استانداردهای مربوط (مانند IEC 60364 و مقررات برق) و بازبینی فرد صلاحیت‌دار الزامی است.
+  </div>
+</footer>
+
+</body>
+</html>
